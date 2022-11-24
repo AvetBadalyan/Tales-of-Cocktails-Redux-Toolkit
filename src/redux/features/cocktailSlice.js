@@ -17,6 +17,13 @@ export const fetchSingleCocktail = createAsyncThunk(
   }
 );
 
+export const fetchSearchCocktail = createAsyncThunk(
+  "cocktails/fetchSearchCocktail",
+  async ({ searchText }) => {
+    return fetch(`${urlName}${searchText}`).then((res) => res.json());
+  }
+);
+
 const cocktailSlice = createSlice({
   name: "cocktails",
   initialState: {
@@ -46,6 +53,18 @@ const cocktailSlice = createSlice({
       state.cocktail = action.payload.drinks;
     },
     [fetchSingleCocktail.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    [fetchSearchCocktail.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [fetchSearchCocktail.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.cocktails = action.payload.drinks;
+    },
+    [fetchSearchCocktail.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },

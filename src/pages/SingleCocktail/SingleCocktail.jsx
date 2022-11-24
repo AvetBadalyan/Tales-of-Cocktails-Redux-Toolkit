@@ -11,10 +11,11 @@ export default function SingleCocktail() {
 
   useEffect(() => {
     dispatch(fetchSingleCocktail({ id }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-    useEffect(() => {
-      console.log(cocktail, "cocktail");
+  useEffect(() => {
+    console.log(cocktail, "cocktail");
     if (cocktail.length > 0) {
       const {
         strDrink: name,

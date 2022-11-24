@@ -36,6 +36,10 @@ export default function CocktailList() {
     return <div>Loading...</div>;
   }
 
+  if (!cocktails) {
+    return <h2>No Cocktails matched your search </h2>;
+  }
+
   return (
     <div className="home-container">
       <h2>Cocktail List</h2>
