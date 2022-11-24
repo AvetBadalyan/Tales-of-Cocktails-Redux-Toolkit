@@ -6,7 +6,7 @@ import "./CocktailList.css";
 
 export default function CocktailList() {
   const { cocktails, loading } = useSelector((state) => ({ ...state.app }));
-  const [modifiedCocktail, setModifiedCocktail] = useState([]);
+  const [modifiedCocktails, setModifiedCocktails] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,9 +26,9 @@ export default function CocktailList() {
           glass: strGlass,
         };
       });
-      setModifiedCocktail(newCocktails);
+      setModifiedCocktails(newCocktails);
     } else {
-      setModifiedCocktail([]);
+      setModifiedCocktails([]);
     }
   }, [cocktails]);
 
@@ -40,7 +40,7 @@ export default function CocktailList() {
     <div className="home-container">
       <h2>Cocktail List</h2>
       <div className="cocktail-list-container">
-        {modifiedCocktail.map((item) => {
+        {modifiedCocktails.map((item) => {
           const { id, name, image, info, glass } = item;
           return (
             <div key={id} className="card">

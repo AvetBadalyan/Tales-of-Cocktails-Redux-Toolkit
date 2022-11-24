@@ -1,11 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
+const urlName = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
+const urlId = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 
 export const fetchCocktails = createAsyncThunk(
   "cocktails/fetchCocktails",
   async () => {
-    return fetch(url).then((res) => res.json());
+    return fetch(urlName).then((res) => res.json());
+  }
+);
+
+export const fetchSingleCocktail = createAsyncThunk(
+  "cocktails/fetchSingleCocktail",
+  async ({ id }) => {
+    return fetch(`${urlId}${id}`).then((res) => res.json());
   }
 );
 
@@ -29,8 +37,19 @@ const cocktailSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+
+    [fetchSingleCocktail.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [fetchSingleCocktail.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.cocktail = action.payload.drinks;
+    },
+    [fetchSingleCocktail.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
 export default cocktailSlice.reducer;
-
