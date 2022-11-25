@@ -42,23 +42,45 @@ export default function CocktailList() {
 
   return (
     <div className="home-container">
-      <h2>Cocktail List</h2>
+      <h1>SWEET, YUMMY & DELICIOUS</h1>
       <div className="cocktail-list-container">
-        {modifiedCocktails.map((item) => {
+        {modifiedCocktails.map((item, index) => {
           const { id, name, image, info, glass } = item;
-          return (
-            <div key={id} className="card">
-              <img src={image} alt={name} />
-              <div className="card-body">
-                <h4 className="card-title">{name}</h4>
-                <h4 className="card-title">{glass}</h4>
-                <p className="card-text">{info}</p>
-                <Link to={`/cocktail/${id}`}>
-                  <button className="btn btn-info">Details</button>
-                </Link>
+          if (index % 2) {
+            return (
+              <div key={id} className="card">
+                <div className="card-body">
+                  <h4 className="card-title">Name: {name}</h4>
+                  <h4 className="card-title">Glass: {glass}</h4>
+                  <p className="card-text">info: {info}</p>
+                  <Link to={`/cocktail/${id}`}>
+                    <button className="btn btn-info">Details</button>
+                  </Link>
+                </div>
+                <div className="white-line"></div>
+                <div className="card-image-container">
+                  <img src={image} alt={name} />
+                </div>
               </div>
-            </div>
-          );
+            );
+          } else {
+            return (
+              <div key={id} className="card">
+                <div className="card-image-container">
+                  <img src={image} alt={name} />
+                </div>
+                <div className="white-line"></div>
+                <div className="card-body">
+                  <h4 className="card-title">Name: {name}</h4>
+                  <h4 className="card-title">Glass: {glass}</h4>
+                  <p className="card-text">info: {info}</p>
+                  <Link to={`/cocktail/${id}`}>
+                    <button className="btn btn-info">Details</button>
+                  </Link>
+                </div>
+              </div>
+            );
+          }
         })}
       </div>
     </div>

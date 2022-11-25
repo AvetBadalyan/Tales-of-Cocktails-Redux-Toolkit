@@ -6,6 +6,7 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: black;
 }
 
 body {
@@ -20,4 +21,13 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+button {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:active {
+  transform: scale(0.9);
 }

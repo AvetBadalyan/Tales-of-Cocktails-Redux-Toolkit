@@ -1,14 +1,38 @@
 import React from "react";
-import "./Header.css";
+import { Link } from "react-router-dom";
+import ".//Header.css";
+import logo from "./../../assets/cocktails-logo-neon-light.jpg";
 
-export default function Header() {
+export default function Navbar() {
   return (
-    <div>
-      <div className="navbar">
-        <div className="container-fluid">
-          <span className="header-title">FIND YOUR FAVORITE COCKTAIL</span>
+    <nav className="nav-main">
+      <Link to="/" className="image-container">
+        <img src={logo} alt="logo" />
+      </Link>
+
+      <div className="title-container">
+        <h1>Tales of Cocktails</h1>
+      </div>
+
+      <div className="nav-links">
+        <div>
+          <Link to="/" className="nav-links-item">
+            Home
+          </Link>
+        </div>
+        |
+        <div>
+          <Link to="/cocktails" className="nav-links-item">
+            All Cocktails
+          </Link>
+        </div>
+        |
+        <div>
+          <Link to="/about" className="nav-links-item">
+            About
+          </Link>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }
