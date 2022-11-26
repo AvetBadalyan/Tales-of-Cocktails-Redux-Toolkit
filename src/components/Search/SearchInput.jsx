@@ -17,19 +17,17 @@ export default function SearchInput() {
   };
 
   return (
-    <section className="section search">
+    <div className="search">
       <form className="search-form" onSubmit={submitHandler}>
-        <div className="form-control">
-          <label htmlFor="name">Search Cocktail</label>
-          <input
-            type="text"
-            onChange={changeHandle}
-            name="name"
-            id="name"
-            ref={searchValue}
-          />
-        </div>
+        <input
+          type="text"
+          onChange={changeHandle}
+          name="name"
+          id="name"
+          ref={searchValue}
+          placeholder="Search your favorite cocktail..."
+        />
       </form>
-    </section>
+    </div>
   );
 }

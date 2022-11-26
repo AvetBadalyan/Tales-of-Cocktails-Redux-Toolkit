@@ -1,0 +1,51 @@
+.single-cocktail-page {
+  background: url("./../../assets/Thumb-Mini-Manhattan-Batched-Make-Ahead-Martini-Negroni-Manhattan-Holiday-Drink-Recipe.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 90vh;
+  padding: 12px;
+  color: white;
+}
+.single-cocktail-page-container {
+  height: 100%;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.drink {
+  width: 50%;
+  border: 1px solid red;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 12px;
+}
+
+.single-cocktail-page-image-container {
+  height: 60%;
+  width: 45%;
+}
+
+.single-cocktail-page-image-container img {
+  height: 100%;
+  width: 100%;
+}
+
+.drink-info {
+  height: 40%;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.drink-data {
+  font-style: italic;
+}

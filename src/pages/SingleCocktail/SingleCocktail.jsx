@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchSingleCocktail } from "../../redux/features/cocktailSlice";
+import "./SingleCocktail.css";
 
 export default function SingleCocktail() {
   const { cocktail, loading } = useSelector((state) => ({ ...state.app }));
@@ -61,33 +62,33 @@ export default function SingleCocktail() {
     const { name, image, info, category, glass, instructions, ingredients } =
       modifiedCocktail;
     return (
-      <div>
+      <div className="single-cocktail-page">
         {loading && <div>Loading...</div>}
         {!loading && (
-          <div className="section cocktail-section">
+          <div className="single-cocktail-page-container">
             <Link to="/">
               <button className="btn">Go Back To Home Page</button>
             </Link>
             <h2 className="section-title">{name}</h2>
             <div className="drink">
-              <img src={image} alt={name} />
+              <div className="single-cocktail-page-image-container">
+                <img src={image} alt={name} />
+              </div>
               <div className="drink-info">
                 <p>
-                  <span className="drink-data">Name: {name}</span>
+                  Name: <span className="drink-data">{name}</span>
                 </p>
                 <p>
-                  <span className="drink-data">Category: {category}</span>
+                  Category: <span className="drink-data">{category}</span>
                 </p>
                 <p>
-                  <span className="drink-data">Info: {info}</span>
+                  Info: <span className="drink-data">{info}</span>
                 </p>
                 <p>
-                  <span className="drink-data">Glass: {glass}</span>
+                  Glass: <span className="drink-data">{glass}</span>
                 </p>
                 <p>
-                  <span className="drink-data">
-                    Instructions: {instructions}
-                  </span>
+                  Instructions: <span className="drink-data">{instructions}</span>
                 </p>
 
                 <p>
