@@ -16,19 +16,21 @@
 }
 
 .card {
-  width: 48%;
+  width: 45%;
+  min-width: 400px;
   height: 40vh;
   display: flex;
   border-radius: 12px;
   justify-content: center;
   align-items: center;
+  gap: 4px;
   border: 1px solid white;
   margin: 12px;
+  padding: 12px;
 }
 
 .card button {
   padding: 4px 16px;
-  margin: 12px auto;
 }
 
 .white-line {
@@ -40,6 +42,11 @@
 .card-body {
   width: 50%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
 }
 
 .card-image-container {
@@ -53,4 +60,25 @@
 .card-image-container img {
   height: 100%;
   width: 90%;
+}
+
+@media only screen and (max-width: 960px) {
+  .card {
+    width: 100%;
+    
+  flex: 1;
+  }
+
+  .home-container {
+    width: 100%;
+  }
+
+  
+}
+
+@media only screen and (max-width: 480px) {
+  .card {
+    flex-direction: column;
+    height: auto;
+  }
 }

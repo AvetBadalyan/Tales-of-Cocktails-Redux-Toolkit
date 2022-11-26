@@ -12,13 +12,18 @@
   left: 0px;
   background-color: rgba(0, 0, 0, 0.95);
   color: white;
-  flex-wrap: wrap;
 }
 
-.title-container,
-.image-container,
+.logo-and-title-container {
+  display: flex;
+  justify-content: space-between;
+  height: 9vh;
+  width: 55%;
+  padding: 2px 0;
+}
+
 .nav-links {
-  height: 90%;
+  height: 9vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,6 +33,9 @@
 
 .title-container {
   font-style: italic;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .image-container img {
@@ -68,7 +76,19 @@ a:hover {
 }
 
 @media only screen and (max-width: 768px) {
-  .title-container {
-    width: 60%;
+  .nav-main {
+    height: 15vh;
+    flex-direction: column;
+  }
+
+  .logo-and-title-container {
+    width: 100%;
+    padding: 8px 0;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
   }
 }

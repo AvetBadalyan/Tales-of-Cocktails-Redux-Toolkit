@@ -50,12 +50,12 @@ export default function CocktailList() {
             return (
               <div key={id} className="card">
                 <div className="card-body">
-                  <h4 className="card-title">Name: {name}</h4>
-                  <h4 className="card-title">Glass: {glass}</h4>
-                  <p className="card-text">info: {info}</p>
-                  <Link to={`/cocktail/${id}`}>
+                  <div className="card-title">Name: {name}</div>
+                  <div className="card-title">Glass: {glass}</div>
+                  <div className="card-text">info: {info}</div>
+                 <div> <Link to={`/cocktail/${id}`}>
                     <button className="btn btn-info">Details</button>
-                  </Link>
+                  </Link></div>
                 </div>
                 <div className="white-line"></div>
                 <div className="card-image-container">
@@ -73,10 +73,10 @@ export default function CocktailList() {
                 <div className="card-body">
                   <h4 className="card-title">Name: {name}</h4>
                   <h4 className="card-title">Glass: {glass}</h4>
-                  <p className="card-text">info: {info}</p>
-                  <Link to={`/cocktail/${id}`}>
+                  <div className="card-text">info: {info}</div>
+                 <div> <Link to={`/cocktail/${id}`}>
                     <button className="btn btn-info">Details</button>
-                  </Link>
+                  </Link></div>
                 </div>
               </div>
             );
