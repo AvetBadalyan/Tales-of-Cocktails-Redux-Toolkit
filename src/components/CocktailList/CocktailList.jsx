@@ -46,41 +46,39 @@ export default function CocktailList() {
       <div className="cocktail-list-container">
         {modifiedCocktails.map((item, index) => {
           const { id, name, image, info, glass } = item;
-          if (index % 2) {
-            return (
-              <div key={id} className="card">
-                <div className="card-body">
-                  <div className="card-title">Name: {name}</div>
-                  <div className="card-title">Glass: {glass}</div>
-                  <div className="card-text">info: {info}</div>
-                 <div> <Link to={`/cocktail/${id}`}>
-                    <button className="btn btn-info">Details</button>
-                  </Link></div>
-                </div>
-                <div className="white-line"></div>
-                <div className="card-image-container">
-                  <img src={image} alt={name} />
-                </div>
+
+          const cardBody = (
+            <div className="card-body">
+              <div className="card-title">Name: {name}</div>
+              <div className="card-title">Glass: {glass}</div>
+              <div className="card-text">info: {info}</div>
+              <div>
+                <Link to={`/cocktail/${id}`}>
+                  <button className="btn btn-info">Details</button>
+                </Link>
               </div>
-            );
-          } else {
+            </div>
+          );
+
+          const cardImage = (
+            <div className="card-image-container">
+              <img src={image} alt={name} />
+            </div>
+          );
+
+          function cardCreator(part1, part2) {
             return (
               <div key={id} className="card">
-                <div className="card-image-container">
-                  <img src={image} alt={name} />
-                </div>
+                {part1}
                 <div className="white-line"></div>
-                <div className="card-body">
-                  <h4 className="card-title">Name: {name}</h4>
-                  <h4 className="card-title">Glass: {glass}</h4>
-                  <div className="card-text">info: {info}</div>
-                 <div> <Link to={`/cocktail/${id}`}>
-                    <button className="btn btn-info">Details</button>
-                  </Link></div>
-                </div>
+                {part2}
               </div>
             );
           }
+
+          return index % 2
+            ? cardCreator(cardBody, cardImage)
+            : cardCreator(cardImage, cardBody);
         })}
       </div>
     </div>
