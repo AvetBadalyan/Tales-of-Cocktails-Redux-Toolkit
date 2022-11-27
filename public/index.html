@@ -18,5 +18,24 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyADBMQOToKNkaectCCqKPw6S9Q0RuG5uxE",
+        authDomain: "tales-of-cocktails.firebaseapp.com",
+        projectId: "tales-of-cocktails",
+        storageBucket: "tales-of-cocktails.appspot.com",
+        messagingSenderId: "627730094569",
+        appId: "1:627730094569:web:ab88dacfbccacd15c41378",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+    </script>
   </body>
 </html>

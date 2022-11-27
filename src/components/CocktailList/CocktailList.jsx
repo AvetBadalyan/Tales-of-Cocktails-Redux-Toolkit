@@ -11,6 +11,7 @@ export default function CocktailList() {
 
   useEffect(() => {
     dispatch(fetchCocktails());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

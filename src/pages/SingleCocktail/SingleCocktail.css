@@ -3,20 +3,20 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  max-height: 90vh;
   height: 90vh;
   padding: 0.75rem;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 12px;
 }
+
 .single-cocktail-page-container {
-  height: 100%;
+  height: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 0.25rem;
 }
 
 .btn-back-page {
@@ -32,7 +32,7 @@
 }
 
 .single-cocktail-page-image-container {
-  height: 58%;
+  height: 55%;
   width: 50%;
 }
 
@@ -47,7 +47,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 0.25rem;
   font-weight: bold;
 }
 

@@ -17,7 +17,7 @@
 
 .card {
   width: 45%;
-  min-width: 25rem;
+  min-width: 20rem;
   height: 40vh;
   display: flex;
   border-radius: 0.75rem;
