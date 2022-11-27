@@ -5,7 +5,7 @@
 
 .home-container h1 {
   text-align: center;
-  margin: 20px auto;
+  margin: 1.25rem auto;
 }
 
 .cocktail-list-container {
@@ -17,20 +17,20 @@
 
 .card {
   width: 45%;
-  min-width: 400px;
+  min-width: 25rem;
   height: 40vh;
   display: flex;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   justify-content: center;
   align-items: center;
-  gap: 4px;
+  gap: 0.25rem;
   border: 1px solid white;
-  margin: 12px;
-  padding: 12px;
+  margin: 0.75rem;
+  padding: 0.75rem;
 }
 
 .card button {
-  padding: 4px 16px;
+  padding: 0.25rem 1rem;
 }
 
 .white-line {
@@ -46,7 +46,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 4px;
+  gap: 0.25rem;
 }
 
 .card-image-container {
@@ -65,15 +65,13 @@
 @media only screen and (max-width: 960px) {
   .card {
     width: 100%;
-    
-  flex: 1;
+
+    flex: 1;
   }
 
   .home-container {
     width: 100%;
   }
-
-  
 }
 
 @media only screen and (max-width: 480px) {

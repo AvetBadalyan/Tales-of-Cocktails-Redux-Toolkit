@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fetchSingleCocktail } from "../../redux/features/cocktailSlice";
 import "./SingleCocktail.css";
 
@@ -56,50 +56,59 @@ export default function SingleCocktail() {
     }
   }, [id, cocktail]);
 
-  if (!modifiedCocktail) {
-    return <h2>No Cocktail found</h2>;
-  } else {
-    const { name, image, info, category, glass, instructions, ingredients } =
-      modifiedCocktail;
-    return (
-      <div className="single-cocktail-page">
-        {loading && <div>Loading...</div>}
-        {!loading && (
-          <div className="single-cocktail-page-container">
-            <Link to="/">
-              <button className="btn">Go Back To Home Page</button>
-            </Link>
-            <h2 className="section-title">{name}</h2>
-            <div className="drink">
-              <div className="single-cocktail-page-image-container">
-                <img src={image} alt={name} />
-              </div>
-              <div className="drink-info">
-                <p>
-                  Name: <span className="drink-data">{name}</span>
-                </p>
-                <p>
-                  Category: <span className="drink-data">{category}</span>
-                </p>
-                <p>
-                  Info: <span className="drink-data">{info}</span>
-                </p>
-                <p>
-                  Glass: <span className="drink-data">{glass}</span>
-                </p>
-                <p>
-                  Instructions: <span className="drink-data">{instructions}</span>
-                </p>
+  return (
+    <div className="single-cocktail-page">
+      {loading && <div>Loading...</div>}
 
-                <p>
-                  <span>{`INGREDIENTS: `}</span>
-                  {ingredients.filter((item) => item !== null).join(", ")}
-                </p>
-              </div>
+      {!modifiedCocktail && <h2>No Cocktail found</h2>}
+
+      {!loading && modifiedCocktail && (
+        <div className="name-container">
+          <h2>
+            Name: <span className="drink-data">{modifiedCocktail.name}</span>
+          </h2>
+        </div>
+      )}
+
+      {!loading && modifiedCocktail && (
+        <div className="single-cocktail-page-container">
+          <div className="drink">
+            <div className="single-cocktail-page-image-container">
+              <img src={modifiedCocktail.image} alt={modifiedCocktail.name} />
+            </div>
+            <div className="drink-info">
+              <p>
+                Category:{" "}
+                <span className="drink-data">{modifiedCocktail.category}</span>
+              </p>
+              <p>
+                Info:{" "}
+                <span className="drink-data">{modifiedCocktail.info}</span>
+              </p>
+              <p>
+                Glass:{" "}
+                <span className="drink-data">{modifiedCocktail.glass}</span>
+              </p>
+              <p>
+                Instructions:{" "}
+                <span className="drink-data">
+                  {modifiedCocktail.instructions}
+                </span>
+              </p>
+
+              <p>
+                INGREDIENTS:{" "}
+                <span className="drink-data">
+                  {" "}
+                  {modifiedCocktail.ingredients
+                    .filter((item) => item !== null)
+                    .join(", ")}
+                </span>
+              </p>
             </div>
           </div>
-        )}
-      </div>
-    );
-  }
+        </div>
+      )}
+    </div>
+  );
 }

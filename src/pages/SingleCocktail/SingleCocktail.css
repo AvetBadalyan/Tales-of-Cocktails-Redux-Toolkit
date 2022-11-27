@@ -4,48 +4,84 @@
   background-repeat: no-repeat;
   background-position: center;
   height: 90vh;
-  padding: 12px;
+  padding: 0.75rem;
   color: white;
-}
-.single-cocktail-page-container {
-  height: 100%;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 4px;
+  gap: 12px;
+}
+.single-cocktail-page-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.25rem;
+}
+
+.btn-back-page {
+  width: fit-content;
 }
 
 .drink {
   width: 50%;
-  border: 1px solid red;
-  height: 80%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 4px;
-  padding: 12px;
 }
 
 .single-cocktail-page-image-container {
-  height: 60%;
-  width: 45%;
+  height: 58%;
+  width: 50%;
 }
 
 .single-cocktail-page-image-container img {
   height: 100%;
   width: 100%;
+  border-radius: 0.75rem;
 }
 
 .drink-info {
   height: 40%;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 4px;
+  gap: 0.25rem;
+  font-weight: bold;
 }
 
 .drink-data {
   font-style: italic;
+}
+
+@media only screen and (max-width: 1020px) {
+  .drink {
+    width: 60%;
+  }
+
+  .single-cocktail-page-image-container {
+    height: 45%;
+    width: 50%;
+  }
+
+  .drink-info {
+    height: 50%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .single-cocktail-page {
+    height: 85vh;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .drink {
+    width: 75%;
+  }
+
+  .single-cocktail-page-image-container {
+    width: 80%;
+  }
 }

@@ -25,7 +25,7 @@ export default function Navbar() {
         |
         <div>
           <Link to="/cocktails" className="nav-links-item">
-            All Cocktails
+            Cocktails
           </Link>
         </div>
         |
