@@ -1,4 +1,16 @@
+# Tales of Cocktails
 
+## This is a little app with dynamic routing built with Redux Toolkit.
+
+You can see the whole collection of cocktails, search a single one, see details of a specific cocktail in another page.
+With Mobile Adaptation and Responsive design.
+
+Link to Website [https://tales-of-cocktails.web.app/](https://tales-of-cocktails.web.app/)
+
+![screenshot](./screenshots//cocktails-home.jpg)
+![screenshot](./screenshots/cocktails.jpg)
+![screenshot](./screenshots/single-cocktail.jpg)
+![screenshot](./screenshots/cocktail-mobile.jpg)
 
 # Getting Started with Create React App
 
