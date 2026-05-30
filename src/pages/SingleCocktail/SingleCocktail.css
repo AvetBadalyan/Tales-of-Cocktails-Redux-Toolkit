@@ -3,14 +3,13 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  max-height: 90vh;
-  height: 90vh;
+  min-height: 90vh;
   padding: 0.75rem;
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 12px;
+  overflow-y: auto;
 }
 
 .single-cocktail-page-container {

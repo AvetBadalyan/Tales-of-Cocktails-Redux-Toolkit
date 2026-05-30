@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ".//Header.css";
+import "./Header.css";
 import logo from "./../../assets/cocktails-logo-neon-light.jpg";
 
-export default function Navbar() {
+export default function Header() {
   return (
     <nav className="nav-main">
       <div className="logo-and-title-container">

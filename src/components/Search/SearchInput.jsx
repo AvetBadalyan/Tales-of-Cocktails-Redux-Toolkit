@@ -1,30 +1,33 @@
-import React, { useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { fetchSearchCocktail } from "../../redux/features/cocktailSlice";
+import { fetchCocktails, fetchSearchCocktail } from "../../redux/features/cocktailSlice";
 import "./SearchInput.css";
 
 export default function SearchInput() {
-  const searchValue = useRef();
+  const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
 
-  const changeHandle = () => {
-    const searchText = searchValue.current.value;
-    dispatch(fetchSearchCocktail({ searchText }));
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchText.trim()) {
+        dispatch(fetchSearchCocktail({ searchText: searchText.trim() }));
+      } else {
+        dispatch(fetchCocktails());
+      }
+    }, 500);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-  };
+    return () => clearTimeout(timer);
+  }, [searchText, dispatch]);
 
   return (
     <div className="search">
-      <form className="search-form" onSubmit={submitHandler}>
+      <form className="search-form" onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
-          onChange={changeHandle}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
           name="name"
           id="name"
-          ref={searchValue}
           placeholder="Search your favorite cocktail..."
         />
       </form>

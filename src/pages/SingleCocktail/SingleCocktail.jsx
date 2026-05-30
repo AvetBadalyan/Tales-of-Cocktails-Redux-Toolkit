@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchSingleCocktail } from "../../redux/features/cocktailSlice";
 import "./SingleCocktail.css";
 
 export default function SingleCocktail() {
-  const { cocktail, loading } = useSelector((state) => ({ ...state.app }));
+  const { cocktail, loading } = useSelector((state) => state.app);
   const [modifiedCocktail, setModifiedCocktail] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
@@ -16,7 +17,6 @@ export default function SingleCocktail() {
   }, [id]);
 
   useEffect(() => {
-    console.log(cocktail, "cocktail");
     if (cocktail.length > 0) {
       const {
         strDrink: name,
@@ -25,32 +25,18 @@ export default function SingleCocktail() {
         strGlass: glass,
         strCategory: category,
         strInstructions: instructions,
-        strIngredient1,
-        strIngredient2,
-        strIngredient3,
-        strIngredient4,
-        strIngredient5,
+        strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5,
+        strIngredient6, strIngredient7, strIngredient8, strIngredient9, strIngredient10,
+        strIngredient11, strIngredient12, strIngredient13, strIngredient14, strIngredient15,
       } = cocktail[0];
 
       const ingredients = [
-        strIngredient1,
-        strIngredient2,
-        strIngredient3,
-        strIngredient4,
-        strIngredient5,
-      ];
+        strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5,
+        strIngredient6, strIngredient7, strIngredient8, strIngredient9, strIngredient10,
+        strIngredient11, strIngredient12, strIngredient13, strIngredient14, strIngredient15,
+      ].filter(Boolean);
 
-      const newCocktail = {
-        name,
-        image,
-        info,
-        category,
-        glass,
-        instructions,
-        ingredients,
-      };
-
-      setModifiedCocktail(newCocktail);
+      setModifiedCocktail({ name, image, info, category, glass, instructions, ingredients });
     } else {
       setModifiedCocktail(null);
     }
@@ -58,9 +44,13 @@ export default function SingleCocktail() {
 
   return (
     <div className="single-cocktail-page">
+      <button className="btn-back-page" onClick={() => navigate(-1)}>
+        ← Back
+      </button>
+
       {loading && <div>Loading...</div>}
 
-      {!modifiedCocktail && <h2>No Cocktail found</h2>}
+      {!loading && !modifiedCocktail && <h2>No cocktail found</h2>}
 
       {!loading && modifiedCocktail && (
         <div className="name-container">
@@ -91,18 +81,12 @@ export default function SingleCocktail() {
               </p>
               <p>
                 Instructions:{" "}
-                <span className="drink-data">
-                  {modifiedCocktail.instructions}
-                </span>
+                <span className="drink-data">{modifiedCocktail.instructions}</span>
               </p>
-
               <p>
-                INGREDIENTS:{" "}
+                Ingredients:{" "}
                 <span className="drink-data">
-                  {" "}
-                  {modifiedCocktail.ingredients
-                    .filter((item) => item !== null)
-                    .join(", ")}
+                  {modifiedCocktail.ingredients.join(", ")}
                 </span>
               </p>
             </div>

@@ -1,12 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchCocktails } from "../../redux/features/cocktailSlice";
 import "./CocktailList.css";
 
+const renderCard = (part1, part2, id) => (
+  <div key={id} className="card">
+    {part1}
+    <div className="white-line"></div>
+    {part2}
+  </div>
+);
+
 export default function CocktailList() {
-  const { cocktails, loading } = useSelector((state) => ({ ...state.app }));
-  const [modifiedCocktails, setModifiedCocktails] = useState([]);
+  const { cocktails, loading } = useSelector((state) => state.app);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,31 +21,20 @@ export default function CocktailList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (cocktails) {
-      const newCocktails = cocktails.map((item) => {
-        const { idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass } =
-          item;
-        return {
-          id: idDrink,
-          name: strDrink,
-          image: strDrinkThumb ? `${strDrinkThumb}/small` : strDrinkThumb,
-          info: strAlcoholic,
-          glass: strGlass,
-        };
-      });
-      setModifiedCocktails(newCocktails);
-    } else {
-      setModifiedCocktails([]);
-    }
-  }, [cocktails]);
+  const modifiedCocktails = cocktails.map((item) => ({
+    id: item.idDrink,
+    name: item.strDrink,
+    image: item.strDrinkThumb ? `${item.strDrinkThumb}/small` : item.strDrinkThumb,
+    info: item.strAlcoholic,
+    glass: item.strGlass,
+  }));
 
   return (
     <div className="home-container">
-      {loading && <div>Loading...</div>}
-      <h1>SWEET, YUMMY & DELICIOUS</h1>
+      {loading && <div className="loading-text">Loading...</div>}
+      <h1>SWEET, YUMMY &amp; DELICIOUS</h1>
 
-      {!loading && cocktails.length === 0 && <h1>No Cocktails matched your search </h1>}
+      {!loading && cocktails.length === 0 && <h1>No cocktails matched your search</h1>}
 
       {cocktails.length > 0 && (
         <div className="cocktail-list-container">
@@ -49,7 +45,7 @@ export default function CocktailList() {
               <div className="card-body">
                 <div className="card-title">Name: {name}</div>
                 {glass && <div className="card-title">Glass: {glass}</div>}
-                <div className="card-text">info: {info}</div>
+                <div className="card-text">Info: {info}</div>
                 <div>
                   <Link to={`/cocktail/${id}`}>
                     <button className="btn btn-info">Details</button>
@@ -64,22 +60,13 @@ export default function CocktailList() {
               </div>
             );
 
-            function cardCreator(part1, part2) {
-              return (
-                <div key={id} className="card">
-                  {part1}
-                  <div className="white-line"></div>
-                  {part2}
-                </div>
-              );
-            }
-
             return index % 2
-              ? cardCreator(cardBody, cardImage)
-              : cardCreator(cardImage, cardBody);
+              ? renderCard(cardBody, cardImage, id)
+              : renderCard(cardImage, cardBody, id);
           })}
         </div>
       )}
     </div>
   );
 }
+
