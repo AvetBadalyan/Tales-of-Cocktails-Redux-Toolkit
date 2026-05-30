@@ -22,7 +22,7 @@ export default function CocktailList() {
         return {
           id: idDrink,
           name: strDrink,
-          image: strDrinkThumb,
+          image: strDrinkThumb ? `${strDrinkThumb}/small` : strDrinkThumb,
           info: strAlcoholic,
           glass: strGlass,
         };
@@ -38,9 +38,9 @@ export default function CocktailList() {
       {loading && <div>Loading...</div>}
       <h1>SWEET, YUMMY & DELICIOUS</h1>
 
-      {!cocktails && <h1>No Cocktails matched your search </h1>}
+      {!loading && cocktails.length === 0 && <h1>No Cocktails matched your search </h1>}
 
-      {cocktails && (
+      {cocktails.length > 0 && (
         <div className="cocktail-list-container">
           {modifiedCocktails.map((item, index) => {
             const { id, name, image, info, glass } = item;
@@ -48,7 +48,7 @@ export default function CocktailList() {
             const cardBody = (
               <div className="card-body">
                 <div className="card-title">Name: {name}</div>
-                <div className="card-title">Glass: {glass}</div>
+                {glass && <div className="card-title">Glass: {glass}</div>}
                 <div className="card-text">info: {info}</div>
                 <div>
                   <Link to={`/cocktail/${id}`}>

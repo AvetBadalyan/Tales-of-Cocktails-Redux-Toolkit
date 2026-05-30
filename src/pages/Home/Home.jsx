@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CocktailList from "../../components/CocktailList/CocktailList";
-import SearchInput from "../../components/Search/SearchInput";
 import "./Home.css";
 
 export default function Home() {

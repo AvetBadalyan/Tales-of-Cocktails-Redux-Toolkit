@@ -6,7 +6,22 @@ const urlId = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 export const fetchCocktails = createAsyncThunk(
   "cocktails/fetchCocktails",
   async () => {
-    return fetch(urlName).then((res) => res.json());
+    const categories = [
+      { filter: "Alcoholic", label: "Alcoholic" },
+      { filter: "Non_Alcoholic", label: "Non alcoholic" },
+      { filter: "Optional_alcohol", label: "Optional alcohol" },
+    ];
+    const responses = await Promise.all(
+      categories.map(({ filter }) =>
+        fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=${filter}`).then((res) => res.json())
+      )
+    );
+    const drinks = responses.flatMap((res, i) =>
+      Array.isArray(res.drinks)
+        ? res.drinks.map((d) => ({ ...d, strAlcoholic: categories[i].label }))
+        : []
+    );
+    return { drinks };
   }
 );
 
@@ -38,7 +53,7 @@ const cocktailSlice = createSlice({
     },
     [fetchCocktails.fulfilled]: (state, action) => {
       state.loading = false;
-      state.cocktails = action.payload.drinks;
+      state.cocktails = Array.isArray(action.payload.drinks) ? action.payload.drinks : [];
     },
     [fetchCocktails.rejected]: (state, action) => {
       state.loading = false;
@@ -50,7 +65,7 @@ const cocktailSlice = createSlice({
     },
     [fetchSingleCocktail.fulfilled]: (state, action) => {
       state.loading = false;
-      state.cocktail = action.payload.drinks;
+      state.cocktail = Array.isArray(action.payload.drinks) ? action.payload.drinks : [];
     },
     [fetchSingleCocktail.rejected]: (state, action) => {
       state.loading = false;
@@ -62,7 +77,7 @@ const cocktailSlice = createSlice({
     },
     [fetchSearchCocktail.fulfilled]: (state, action) => {
       state.loading = false;
-      state.cocktails = action.payload.drinks;
+      state.cocktails = Array.isArray(action.payload.drinks) ? action.payload.drinks : [];
     },
     [fetchSearchCocktail.rejected]: (state, action) => {
       state.loading = false;
