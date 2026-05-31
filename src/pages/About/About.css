@@ -1,15 +1,56 @@
 .about-page {
   min-height: 90vh;
-  padding: 0.75rem;
+  padding: 1.2rem;
 }
 
 .about-container {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  gap: 1.5rem;
-  padding: 1.5rem;
+  gap: 2.4rem;
+  padding: 2.4rem;
   color: white;
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
   background-color: rgb(74, 2, 3);
+}
+
+.about-container h1 {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.about-container p {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@media only screen and (max-width: 768px) {
+  .about-page {
+    padding: 0.8rem;
+  }
+
+  .about-container {
+    padding: 1.6rem;
+    gap: 1.6rem;
+  }
+
+  .about-container h1 {
+    font-size: 1.8rem;
+  }
+
+  .about-container p {
+    font-size: 1.4rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .about-container {
+    border-radius: 0.8rem;
+  }
+
+  .about-container h1 {
+    font-size: 1.6rem;
+  }
 }

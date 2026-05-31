@@ -4,8 +4,12 @@ import { Link } from "react-router-dom";
 import { fetchCocktails } from "../../redux/features/cocktailSlice";
 import "./CocktailList.css";
 
-const renderCard = (part1, part2, id) => (
-  <div key={id} className="card">
+const renderCard = (part1, part2, id, index) => (
+  <div
+    key={id}
+    className="card"
+    style={{ animationDelay: `${index * 0.07}s` }}
+  >
     {part1}
     <div className="white-line"></div>
     {part2}
@@ -61,8 +65,8 @@ export default function CocktailList() {
             );
 
             return index % 2
-              ? renderCard(cardBody, cardImage, id)
-              : renderCard(cardImage, cardBody, id);
+              ? renderCard(cardBody, cardImage, id, index)
+              : renderCard(cardImage, cardBody, id, index);
           })}
         </div>
       )}

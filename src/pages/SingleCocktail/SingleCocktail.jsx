@@ -53,43 +53,19 @@ export default function SingleCocktail() {
       {!loading && !modifiedCocktail && <h2>No cocktail found</h2>}
 
       {!loading && modifiedCocktail && (
-        <div className="name-container">
-          <h2>
-            Name: <span className="drink-data">{modifiedCocktail.name}</span>
-          </h2>
-        </div>
-      )}
-
-      {!loading && modifiedCocktail && (
-        <div className="single-cocktail-page-container">
-          <div className="drink">
-            <div className="single-cocktail-page-image-container">
-              <img src={modifiedCocktail.image} alt={modifiedCocktail.name} />
-            </div>
-            <div className="drink-info">
-              <p>
-                Category:{" "}
-                <span className="drink-data">{modifiedCocktail.category}</span>
-              </p>
-              <p>
-                Info:{" "}
-                <span className="drink-data">{modifiedCocktail.info}</span>
-              </p>
-              <p>
-                Glass:{" "}
-                <span className="drink-data">{modifiedCocktail.glass}</span>
-              </p>
-              <p>
-                Instructions:{" "}
-                <span className="drink-data">{modifiedCocktail.instructions}</span>
-              </p>
-              <p>
-                Ingredients:{" "}
-                <span className="drink-data">
-                  {modifiedCocktail.ingredients.join(", ")}
-                </span>
-              </p>
-            </div>
+        <div className="drink">
+          <div className="single-cocktail-page-image-container">
+            <img src={modifiedCocktail.image} alt={modifiedCocktail.name} />
+          </div>
+          <div className="drink-info">
+            <h2 className="drink-name">
+              {modifiedCocktail.name}
+            </h2>
+            <p>Category: <span className="drink-data">{modifiedCocktail.category}</span></p>
+            <p>Info: <span className="drink-data">{modifiedCocktail.info}</span></p>
+            <p>Glass: <span className="drink-data">{modifiedCocktail.glass}</span></p>
+            <p>Instructions: <span className="drink-data">{modifiedCocktail.instructions}</span></p>
+            <p>Ingredients: <span className="drink-data">{modifiedCocktail.ingredients.join(", ")}</span></p>
           </div>
         </div>
       )}

@@ -1,86 +1,84 @@
 .single-cocktail-page {
-  background: url("./../../assets/Thumb-Mini-Manhattan-Batched-Make-Ahead-Martini-Negroni-Manhattan-Holiday-Drink-Recipe.jpg");
+  background: url('./../../assets/Thumb-Mini-Manhattan-Batched-Make-Ahead-Martini-Negroni-Manhattan-Holiday-Drink-Recipe.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   min-height: 90vh;
-  padding: 0.75rem;
+  padding: 2rem;
   color: white;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  overflow-y: auto;
-}
-
-.single-cocktail-page-container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  gap: 1.6rem;
 }
 
 .btn-back-page {
   width: fit-content;
+  font-size: 1.2rem;
+  padding: 0.8rem 1.6rem;
+  letter-spacing: 1px;
 }
 
 .drink {
-  width: 50%;
-  height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
+  gap: 2.4rem;
+  align-items: stretch;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.6rem;
+  padding: 2rem;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .single-cocktail-page-image-container {
-  height: 55%;
-  width: 50%;
+  width: 30%;
+  flex-shrink: 0;
+  border-radius: 1.2rem;
+  overflow: hidden;
 }
 
 .single-cocktail-page-image-container img {
-  height: 100%;
   width: 100%;
-  border-radius: 0.75rem;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1.2rem;
 }
 
 .drink-info {
-  height: 40%;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  font-weight: bold;
+  gap: 1.2rem;
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+.drink-name {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
 }
 
 .drink-data {
   font-style: italic;
-}
-
-@media only screen and (max-width: 1020px) {
-  .drink {
-    width: 60%;
-  }
-
-  .single-cocktail-page-image-container {
-    height: 45%;
-    width: 50%;
-  }
-
-  .drink-info {
-    height: 50%;
-  }
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 @media only screen and (max-width: 768px) {
-  .single-cocktail-page {
-    height: 85vh;
-  }
-}
-
-@media only screen and (max-width: 600px) {
   .drink {
-    width: 75%;
+    flex-direction: column;
   }
 
   .single-cocktail-page-image-container {
-    width: 80%;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .single-cocktail-page {
+    padding: 1.2rem;
   }
 }
