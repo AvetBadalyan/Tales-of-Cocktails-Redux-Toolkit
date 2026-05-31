@@ -1,16 +1,17 @@
 # Tales of Cocktails
 
-## This is a little app with dynamic routing built with Redux Toolkit.
+A cocktail encyclopedia built with React 18, Redux Toolkit, and React Router v6. Browse 160+ recipes, filter by category or letter, search by name, save favorites, and discover something new with Surprise Me or the Cocktail of the Day.
 
-You can see the whole collection of cocktails, search a single one, see details of a specific cocktail in another page.
-With Mobile Adaptation and Responsive design.
+**Live:** [https://tales-of-cocktails.web.app/](https://tales-of-cocktails.web.app/)
 
-Link to Website [https://tales-of-cocktails.web.app/](https://tales-of-cocktails.web.app/)
+## Screenshots
 
-![screenshot](./screenshots//cocktails-home.jpg)
-![screenshot](./screenshots/cocktails.jpg)
-![screenshot](./screenshots/single-cocktail.jpg)
-![screenshot](./screenshots/cocktail-mobile.jpg)
+![Home – Cocktail of the Day](./screenshots/screenshot1.png)
+![Cocktails – Browse & Filter](./screenshots/screenshot2.png)
+![Cocktails – Category Filter](./screenshots/screenshot3.png)
+![Single Cocktail Detail](./screenshots/screenshot4.png)
+![Favorites](./screenshots/screenshot5.png)
+![About](./screenshots/screenshot6.png)
 
 # Getting Started with Create React App
 

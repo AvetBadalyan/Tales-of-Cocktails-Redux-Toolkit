@@ -133,6 +133,7 @@
   letter-spacing: 1px;
   text-align: right;
   width: 100%;
+  margin-bottom: 1.2rem;
 }
 
 .card:hover .card-image-container img {
