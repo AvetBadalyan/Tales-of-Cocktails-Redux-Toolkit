@@ -46,6 +46,12 @@ const cocktailSlice = createSlice({
     cocktail: [],
     loading: false,
     error: null,
+    currentPage: 1,
+  },
+  reducers: {
+    setPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
   },
   extraReducers: {
     [fetchCocktails.pending]: (state, action) => {
@@ -53,6 +59,7 @@ const cocktailSlice = createSlice({
     },
     [fetchCocktails.fulfilled]: (state, action) => {
       state.loading = false;
+      state.currentPage = 1;
       state.cocktails = Array.isArray(action.payload.drinks) ? action.payload.drinks : [];
     },
     [fetchCocktails.rejected]: (state, action) => {
@@ -77,6 +84,7 @@ const cocktailSlice = createSlice({
     },
     [fetchSearchCocktail.fulfilled]: (state, action) => {
       state.loading = false;
+      state.currentPage = 1;
       state.cocktails = Array.isArray(action.payload.drinks) ? action.payload.drinks : [];
     },
     [fetchSearchCocktail.rejected]: (state, action) => {
@@ -86,4 +94,5 @@ const cocktailSlice = createSlice({
   },
 });
 
+export const { setPage } = cocktailSlice.actions;
 export default cocktailSlice.reducer;
