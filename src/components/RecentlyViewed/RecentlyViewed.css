@@ -1,0 +1,59 @@
+.recently-viewed {
+  width: 90%;
+}
+
+.recently-viewed-label {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.8rem;
+}
+
+.recently-viewed-list {
+  display: flex;
+  gap: 1.2rem;
+  overflow-x: auto;
+  padding-bottom: 0.4rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(74, 2, 3, 0.5) transparent;
+}
+
+.recently-viewed-item {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s ease;
+  width: 9rem;
+}
+
+.recently-viewed-item img {
+  width: 9rem;
+  height: 9rem;
+  object-fit: cover;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.2s ease;
+}
+
+.recently-viewed-item span {
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.recently-viewed-item:hover {
+  color: white;
+}
+
+.recently-viewed-item:hover img {
+  border-color: rgba(74, 2, 3, 0.7);
+}

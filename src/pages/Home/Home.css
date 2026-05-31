@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 2.4rem;
   background: url('./../../assets/Martini-Negroni-Manhattan-Holiday-Drink-Recipe.jpg');
   color: white;
   width: 100%;
@@ -10,6 +11,67 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.home-cotd {
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.6rem;
+  padding: 2.4rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  min-width: 24rem;
+}
+
+.cotd-label {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.cotd-loading {
+  color: rgba(255, 255, 255, 0.45);
+  font-style: italic;
+  font-size: 1.4rem;
+  min-height: 8rem;
+  display: flex;
+  align-items: center;
+}
+
+.cotd-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+  color: white;
+  transition: opacity 0.2s ease;
+}
+
+.cotd-card:hover {
+  opacity: 0.85;
+  color: white;
+}
+
+.cotd-image {
+  width: 18rem;
+  height: 18rem;
+  object-fit: cover;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.cotd-name {
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  text-align: center;
 }
 
 .home-page button {

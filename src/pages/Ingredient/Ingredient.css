@@ -1,0 +1,135 @@
+.ingredient-page {
+  min-height: 90vh;
+  padding: 2.4rem 5%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.ingredient-loading {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.6rem;
+}
+
+.ingredient-hero {
+  display: flex;
+  gap: 3.2rem;
+  align-items: flex-start;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.6rem;
+  padding: 2.4rem;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.ingredient-image-container {
+  width: 20rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ingredient-image-container img {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 0.8rem;
+}
+
+.ingredient-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+.ingredient-name {
+  font-size: 3.2rem;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.ingredient-data {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ingredient-description {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.4rem;
+  line-height: 1.7;
+  max-height: 22rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(74, 2, 3, 0.5) transparent;
+}
+
+.ingredient-cocktails-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+}
+
+.ingredient-cocktails-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: 1.6rem;
+}
+
+.ingredient-cocktail-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.75);
+  transition: color 0.2s ease;
+}
+
+.ingredient-cocktail-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.ingredient-cocktail-card span {
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.ingredient-cocktail-card:hover {
+  color: white;
+}
+
+.ingredient-cocktail-card:hover img {
+  border-color: rgba(74, 2, 3, 0.7);
+  transform: scale(1.03);
+}
+
+@media only screen and (max-width: 768px) {
+  .ingredient-hero {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ingredient-image-container {
+    width: 15rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .ingredient-page {
+    padding: 2.4rem 1.2rem;
+  }
+}

@@ -3,7 +3,54 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.6rem;
   min-height: 100vh;
   padding-top: 2.4rem;
+}
+
+.cocktails-top-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  width: 90%;
+}
+
+.cocktails-top-bar .search {
+  flex: 1;
+}
+
+.cocktails-top-bar form {
+  width: 100%;
+  margin-top: 0;
+}
+
+.btn-surprise {
+  white-space: nowrap;
+  font-size: 1.4rem;
+  padding: 1rem 2rem;
+  border-radius: 3.2rem;
+  background: rgba(74, 2, 3, 0.7);
+  border: 1px solid rgba(74, 2, 3, 0.9);
+  color: white;
+  letter-spacing: 1px;
+  font-weight: 400;
+  box-shadow: none;
+  flex-shrink: 0;
+}
+
+.btn-surprise:hover {
+  background: rgb(74, 2, 3);
+  box-shadow: 0 0.4rem 1.2rem rgba(74, 2, 3, 0.5);
+  transform: scale(1.03);
+}
+
+.btn-surprise:active {
+  transform: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .btn-surprise {
+    min-height: 4.4rem;
+    padding: 0 2rem;
+  }
 }

@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchCocktails, setPage } from "../../redux/features/cocktailSlice";
+import { setPage } from "../../redux/features/cocktailSlice";
 import Pagination from "../Pagination/Pagination";
 import "./CocktailList.css";
 
@@ -23,25 +23,27 @@ export default function CocktailList() {
   const { cocktails, loading, currentPage } = useSelector((state) => state.app);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchCocktails());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const modifiedCocktails = cocktails.map((item) => ({
-    id: item.idDrink,
-    name: item.strDrink,
-    image: item.strDrinkThumb ? `${item.strDrinkThumb}/small` : item.strDrinkThumb,
-    info: item.strAlcoholic,
-    glass: item.strGlass,
-  }));
+  const modifiedCocktails = useMemo(
+    () =>
+      cocktails.map((item) => ({
+        id: item.idDrink,
+        name: item.strDrink,
+        image: item.strDrinkThumb ? `${item.strDrinkThumb}/small` : item.strDrinkThumb,
+        info: item.strAlcoholic,
+        glass: item.strGlass,
+      })),
+    [cocktails]
+  );
 
   const totalPages = Math.ceil(modifiedCocktails.length / ITEMS_PER_PAGE);
   const start = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginated = modifiedCocktails.slice(start, start + ITEMS_PER_PAGE);
+  const paginated = useMemo(
+    () => modifiedCocktails.slice(start, start + ITEMS_PER_PAGE),
+    [modifiedCocktails, start]
+  );
 
   return (
-    <div className="home-container">
+    <div className="cocktail-list-section">
       {loading && <div className="loading-text">Loading...</div>}
       <h1>SWEET, YUMMY &amp; DELICIOUS</h1>
 
@@ -49,6 +51,9 @@ export default function CocktailList() {
 
       {cocktails.length > 0 && (
         <>
+          <p className="cocktails-stats">
+            Showing {start + 1}–{start + paginated.length} of {modifiedCocktails.length} cocktails
+          </p>
           <div className="cocktail-list-container">
             {paginated.map((item, index) => {
               const { id, name, image, info, glass } = item;
@@ -57,12 +62,10 @@ export default function CocktailList() {
                 <div className="card-body">
                   <div className="card-title">Name: {name}</div>
                   {glass && <div className="card-title">Glass: {glass}</div>}
-                  <div className="card-text">Info: {info}</div>
-                  <div>
-                    <Link to={`/cocktail/${id}`}>
-                      <button className="btn btn-info">Details</button>
-                    </Link>
-                  </div>
+                  {info && <div className="card-text">Info: {info}</div>}
+                  <Link to={`/cocktail/${id}`}>
+                    <button>Details</button>
+                  </Link>
                 </div>
               );
 

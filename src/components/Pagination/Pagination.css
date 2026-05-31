@@ -45,6 +45,10 @@
   cursor: not-allowed;
 }
 
+.pagination-btn:active {
+  transform: none;
+}
+
 .pagination-arrow {
   font-size: 2rem;
   font-weight: 400;
@@ -59,4 +63,16 @@
   height: 3.6rem;
   display: flex;
   align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .pagination-btn {
+    min-width: 4.4rem;
+    height: 4.4rem;
+    font-size: 1.6rem;
+  }
+
+  .pagination-ellipsis {
+    height: 4.4rem;
+  }
 }

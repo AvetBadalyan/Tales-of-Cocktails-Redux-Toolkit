@@ -1,9 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import logo from "./../../assets/cocktails-logo-neon-light.jpg";
 
 export default function Header() {
+  const { favorites } = useSelector((state) => state.favorites);
+
   return (
     <nav className="nav-main">
       <div className="logo-and-title-container">
@@ -26,6 +29,15 @@ export default function Header() {
         <div>
           <Link to="/cocktails" className="nav-links-item">
             Cocktails
+          </Link>
+        </div>
+        |
+        <div>
+          <Link to="/favorites" className="nav-links-item">
+            Favorites
+            {favorites.length > 0 && (
+              <span className="nav-badge">{favorites.length}</span>
+            )}
           </Link>
         </div>
         |

@@ -21,13 +21,11 @@ export default function SearchInput() {
 
   return (
     <div className="search">
-      <form className="search-form" onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-          name="name"
-          id="name"
           placeholder="Search your favorite cocktail..."
         />
       </form>
