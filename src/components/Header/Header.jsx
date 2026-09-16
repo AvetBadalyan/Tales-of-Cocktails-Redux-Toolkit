@@ -34,6 +34,17 @@ export default function Header() {
 		}
 	}, [isMenuOpen])
 
+	// Close menu on Escape key
+	useEffect(() => {
+		const handleEscape = e => {
+			if (e.key === 'Escape' && isMenuOpen) {
+				setIsMenuOpen(false)
+			}
+		}
+		document.addEventListener('keydown', handleEscape)
+		return () => document.removeEventListener('keydown', handleEscape)
+	}, [isMenuOpen])
+
 	const toggleMenu = () => setIsMenuOpen(prev => !prev)
 
 	return (

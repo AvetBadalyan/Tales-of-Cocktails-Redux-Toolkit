@@ -135,12 +135,24 @@
   }
 
   &__btn {
+    display: inline-block;
     font-size: $font-size-sm;
     padding: $spacing-sm $spacing-xl;
     border-radius: $radius-full;
-    border-color: $color-white-35;
+    border: 2px solid $color-white-35;
+    background: $color-black;
+    color: $color-white;
     letter-spacing: $letter-spacing-wide;
     margin-top: $spacing-sm;
+    text-decoration: none;
+    font-weight: $font-weight-bold;
+    transition: all $transition-base;
+
+    &:hover {
+      background: $color-burgundy-light;
+      border-color: $color-burgundy;
+      color: $color-white;
+    }
   }
 
   @include tablet {

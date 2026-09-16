@@ -21,10 +21,11 @@
     padding: $spacing-3xl;
     text-align: center;
     color: $color-white-70;
+  }
 
-    button {
-      margin-top: $spacing-md;
-    }
+  &__browse-link {
+    @include btn-link;
+    margin-top: $spacing-md;
   }
 
   &__empty-icon {
@@ -89,27 +90,24 @@
   &__card-actions {
     display: flex;
     gap: $spacing-sm;
-
-    button {
-      flex: 1;
-      padding: $spacing-sm $spacing-md;
-      font-size: $font-size-sm;
-      border-radius: $radius-md;
-    }
   }
 
-  &__btn-details {
-    background: transparent;
-    border-color: $color-white-35;
-  }
+  &__btn {
+    @include btn-link-outline;
+    flex: 1;
+    padding: $spacing-sm $spacing-md;
+    font-size: $font-size-sm;
 
-  &__btn-remove {
-    background: rgba(200, 50, 50, 0.2);
-    border-color: rgba(200, 50, 50, 0.5);
-    color: #ff6b6b;
+    &--remove {
+      background: rgba(200, 50, 50, 0.2);
+      border-color: rgba(200, 50, 50, 0.5);
+      color: #ff6b6b;
 
-    &:hover {
-      background: rgba(200, 50, 50, 0.4);
+      &:hover {
+        background: rgba(200, 50, 50, 0.4);
+        border-color: rgba(200, 50, 50, 0.5);
+        color: #ff6b6b;
+      }
     }
   }
 

@@ -12,11 +12,11 @@ export default function NotFound() {
 					Looks like this cocktail got lost on the way to the bar.
 				</p>
 				<div className="not-found__actions">
-					<Link to="/">
-						<button>Go Home</button>
+					<Link to="/" className="not-found__link">
+						Go Home
 					</Link>
-					<Link to="/cocktails">
-						<button>Browse Cocktails</button>
+					<Link to="/cocktails" className="not-found__link">
+						Browse Cocktails
 					</Link>
 				</div>
 			</div>

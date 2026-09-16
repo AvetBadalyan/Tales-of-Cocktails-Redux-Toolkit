@@ -15,8 +15,8 @@ export default function Favorites() {
 					<span className="favorites__empty-icon">💔</span>
 					<p>No favorites yet.</p>
 					<p>Hit ♥ on any cocktail to save it here.</p>
-					<Link to="/cocktails">
-						<button>Browse Cocktails</button>
+					<Link to="/cocktails" className="favorites__browse-link">
+						Browse Cocktails
 					</Link>
 				</div>
 			)}
@@ -44,11 +44,11 @@ export default function Favorites() {
 								<p className="favorites__card-name">{item.name}</p>
 
 								<div className="favorites__card-actions">
-									<Link to={`/cocktail/${item.id}`}>
-										<button className="favorites__btn-details">Details</button>
+									<Link to={`/cocktail/${item.id}`} className="favorites__btn">
+										Details
 									</Link>
 									<button
-										className="favorites__btn-remove"
+										className="favorites__btn favorites__btn--remove"
 										onClick={() => removeFromFavorites(item.id)}
 									>
 										Remove ♥

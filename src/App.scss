@@ -1,9 +1,12 @@
 .app {
   min-height: 100vh;
   background-color: $color-black;
+  display: flex;
+  flex-direction: column;
 }
 
 .main-content {
+  flex: 1;
   min-height: calc(100vh - $header-height);
 
   @include tablet {

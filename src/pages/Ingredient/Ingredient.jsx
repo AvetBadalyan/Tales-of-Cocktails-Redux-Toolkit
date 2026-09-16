@@ -5,7 +5,7 @@ import {
 	selectIngredientCocktails,
 	selectIngredientLoading
 } from '@redux/features/cocktailSlice'
-import { getIngredientImageUrl } from '@services/cocktailApi'
+import { getIngredientImageUrl, getThumbUrl } from '@services/cocktailApi'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -47,8 +47,8 @@ export default function Ingredient() {
 			{!loading && !ingredient && (
 				<div className="ingredient__not-found">
 					<h2>Ingredient not found</h2>
-					<Link to="/cocktails">
-						<button>Browse Cocktails</button>
+					<Link to="/cocktails" className="ingredient__browse-link">
+						Browse Cocktails
 					</Link>
 				</div>
 			)}
@@ -104,7 +104,7 @@ export default function Ingredient() {
 										style={{ animationDelay: `${index * 0.03}s` }}
 									>
 										<img
-											src={`${c.strDrinkThumb}/small`}
+											src={getThumbUrl(c.strDrinkThumb)}
 											alt={c.strDrink}
 											loading="lazy"
 										/>

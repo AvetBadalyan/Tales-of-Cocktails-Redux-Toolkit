@@ -60,8 +60,8 @@ export default function SingleCocktail() {
 			{!loading && !cocktailData && (
 				<div className="single-cocktail__not-found">
 					<h2>Cocktail not found</h2>
-					<Link to="/cocktails">
-						<button>Browse All Cocktails</button>
+					<Link to="/cocktails" className="single-cocktail__browse-link">
+						Browse All Cocktails
 					</Link>
 				</div>
 			)}

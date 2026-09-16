@@ -73,8 +73,8 @@ export default function Home() {
 					)}
 				</div>
 
-				<Link to="/cocktails">
-					<button className="home__cta">Explore All Cocktails 🍸</button>
+				<Link to="/cocktails" className="home__cta">
+					Explore All Cocktails 🍸
 				</Link>
 			</div>
 		</div>

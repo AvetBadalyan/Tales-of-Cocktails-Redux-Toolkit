@@ -1,0 +1,42 @@
+.footer {
+  background: linear-gradient(to top, rgba(18, 4, 4, 0.95), transparent);
+  border-top: 1px solid $color-white-09;
+  padding: $spacing-2xl $spacing-xl;
+  margin-top: auto;
+
+  &__content {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  &__copyright {
+    font-size: $font-size-sm;
+    color: $color-white-50;
+    letter-spacing: $letter-spacing-normal;
+  }
+
+  &__attribution {
+    font-size: $font-size-xs;
+    color: $color-white-35;
+
+    a {
+      color: $color-white-50;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+
+      &:hover {
+        color: $color-red-accent;
+      }
+    }
+  }
+
+  &__disclaimer {
+    font-size: $font-size-xs;
+    color: $color-white-35;
+    margin-top: $spacing-xs;
+  }
+}

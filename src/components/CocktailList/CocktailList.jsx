@@ -99,8 +99,8 @@ function CocktailCard({ cocktail, isReverse, index }) {
 				<h3 className="cocktail-card__name">Name: {name}</h3>
 				{glass && <p className="cocktail-card__glass">Glass: {glass}</p>}
 				{info && <p className="cocktail-card__info">Info: {info}</p>}
-				<Link to={`/cocktail/${id}`}>
-					<button className="cocktail-card__btn">Details</button>
+				<Link to={`/cocktail/${id}`} className="cocktail-card__btn">
+					Details
 				</Link>
 			</div>
 		</article>

@@ -1,7 +1,8 @@
+import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary'
+import Footer from '@components/Footer/Footer'
+import Header from '@components/Header/Header'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Header from '@components/Header/Header'
-import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary'
 import './App.scss'
 
 // Lazy load pages for better performance
@@ -42,6 +43,7 @@ function App() {
 					</Suspense>
 				</ErrorBoundary>
 			</main>
+			<Footer />
 		</div>
 	)
 }

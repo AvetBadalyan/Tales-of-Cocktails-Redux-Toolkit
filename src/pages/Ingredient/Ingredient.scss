@@ -26,6 +26,10 @@
     }
   }
 
+  &__browse-link {
+    @include btn-link;
+  }
+
   &__hero {
     display: flex;
     gap: $spacing-3xl;

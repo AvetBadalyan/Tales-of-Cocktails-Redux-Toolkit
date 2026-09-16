@@ -62,6 +62,14 @@ a {
 }
 
 // -----------------------------
+// Focus States (Accessibility)
+// -----------------------------
+:focus-visible {
+  outline: 2px solid $color-burgundy;
+  outline-offset: 2px;
+}
+
+// -----------------------------
 // Buttons
 // -----------------------------
 button {

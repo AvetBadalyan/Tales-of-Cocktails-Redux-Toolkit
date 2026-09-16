@@ -70,13 +70,27 @@
   }
 
   &__cta {
+    display: inline-block;
+    padding: $spacing-lg;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
     background: $color-white-70;
     color: $color-burgundy;
     border: 2px solid $color-burgundy;
+    border-radius: $radius-md;
+    text-decoration: none;
+    transition: all $transition-base;
+    box-shadow: $shadow-md;
 
     &:hover {
       background: $color-burgundy-light;
       color: $color-white;
+      box-shadow: $shadow-lg;
+      transform: scale(1.02);
+    }
+
+    &:active {
+      transform: scale(0.98);
     }
   }
 
@@ -84,6 +98,11 @@
     &__cta {
       font-size: $font-size-md;
       padding: $spacing-md $spacing-lg;
+    }
+
+    &__cotd-image {
+      width: 15rem;
+      height: 15rem;
     }
   }
 
