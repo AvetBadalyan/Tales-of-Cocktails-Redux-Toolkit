@@ -24,9 +24,12 @@ daily Cocktail of the Day.
 - **📅 Cocktail of the Day** — Fresh daily recommendation on the home page
 - **📖 Ingredient Pages** — Detailed ingredient info with related cocktails
 - **📱 Fully Responsive** — Works great on mobile, tablet, and desktop
-- **🍔 Mobile Navigation** — Hamburger menu for smaller screens
+- **🍔 Mobile Navigation** — Hamburger menu with Escape-to-close support
 - **⚡ Lazy Loading** — Route-based code splitting for faster initial load
 - **💀 Loading Skeletons** — Smooth loading states instead of spinners
+- **♿ Accessibility** — Semantic markup, visible focus states, and keyboard
+  support
+- **🧾 Data Attribution** — Footer crediting TheCocktailDB
 
 ## 📸 Screenshots
 
@@ -44,8 +47,9 @@ daily Cocktail of the Day.
 | -------------------- | ------------------------------------------------------ |
 | **Frontend**         | React 19, React Router v6                              |
 | **State Management** | Redux Toolkit, React-Redux                             |
-| **Styling**          | SCSS with variables & mixins                           |
+| **Styling**          | SCSS with a design-token system (variables & mixins)   |
 | **Build Tool**       | Vite 5                                                 |
+| **Tooling**          | ESLint, Prettier                                       |
 | **API**              | [TheCocktailDB](https://www.thecocktaildb.com/api.php) |
 | **Hosting**          | Firebase Hosting                                       |
 
@@ -57,12 +61,14 @@ src/
 │   ├── CocktailList/    # Cocktail grid with cards
 │   ├── ErrorBoundary/   # Error boundary wrapper
 │   ├── Filters/         # Category & A-Z filters
+│   ├── Footer/          # Site footer with data attribution
 │   ├── Header/          # Navigation with hamburger menu
 │   ├── Pagination/      # Page navigation
 │   ├── RecentlyViewed/  # Recently viewed strip
 │   ├── Search/          # Search input with debounce
 │   └── Skeleton/        # Loading skeleton components
 ├── hooks/               # Custom React hooks
+│   ├── index.js         # Barrel export
 │   ├── useDebounce.js
 │   ├── useFavorites.js
 │   ├── useLocalStorage.js
@@ -81,11 +87,12 @@ src/
 │   │   └── favoritesSlice.js
 │   └── store.js
 ├── services/            # API layer
-│   └── cocktailApi.js
+│   └── cocktailApi.js   # Fetch wrappers + normalizeCocktail / getThumbUrl
 ├── styles/              # Global SCSS
-│   ├── _variables.scss
-│   └── main.scss
+│   ├── _variables.scss  # Design tokens & mixins
+│   └── main.scss        # Reset, base styles, focus states
 ├── App.jsx
+├── App.scss
 └── main.jsx
 ```
 
@@ -185,6 +192,15 @@ Redux Toolkit handles:
 - Filters (category, letter, digits)
 - Ingredient data
 - Loading/error states
+
+### API Layer
+
+A single `cocktailApi.js` module wraps all TheCocktailDB endpoints behind one
+`fetchApi` helper, and centralizes two shared utilities used across the UI:
+
+- **`normalizeCocktail()`** — maps the raw API shape (`idDrink`, `strDrink`, …)
+  to a consistent internal object
+- **`getThumbUrl()`** — builds sized thumbnail URLs (`/small`, `/medium`)
 
 ### Performance Optimizations
 
