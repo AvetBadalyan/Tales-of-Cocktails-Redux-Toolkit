@@ -1,0 +1,125 @@
+.favorites {
+  width: $container-width;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: $spacing-xl 0;
+  min-height: calc(100vh - $header-height);
+
+  &__title {
+    font-family: $font-display;
+    font-size: $font-size-2xl;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: $spacing-xl;
+    @include text-gradient;
+  }
+
+  &__empty {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-lg;
+    padding: $spacing-3xl;
+    text-align: center;
+    color: $color-white-70;
+
+    button {
+      margin-top: $spacing-md;
+    }
+  }
+
+  &__empty-icon {
+    font-size: 5rem;
+    animation: pulse 2s infinite;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+    gap: $spacing-xl;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    background: $gradient-card;
+    border: 1px solid $color-white-09;
+    border-radius: $radius-xl;
+    overflow: hidden;
+    transition: all $transition-slow;
+    animation: fadeInUp 0.4s ease both;
+
+    &:hover {
+      transform: translateY(-0.5rem);
+      border-color: rgba(74, 2, 3, 0.5);
+      box-shadow: $shadow-xl;
+    }
+  }
+
+  &__card-image {
+    display: block;
+    height: 20rem;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-slower;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  &__card-body {
+    padding: $spacing-lg;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__card-name {
+    font-size: $font-size-md;
+    font-weight: $font-weight-bold;
+    color: $color-white-90;
+    text-align: center;
+  }
+
+  &__card-actions {
+    display: flex;
+    gap: $spacing-sm;
+
+    button {
+      flex: 1;
+      padding: $spacing-sm $spacing-md;
+      font-size: $font-size-sm;
+      border-radius: $radius-md;
+    }
+  }
+
+  &__btn-details {
+    background: transparent;
+    border-color: $color-white-35;
+  }
+
+  &__btn-remove {
+    background: rgba(200, 50, 50, 0.2);
+    border-color: rgba(200, 50, 50, 0.5);
+    color: #ff6b6b;
+
+    &:hover {
+      background: rgba(200, 50, 50, 0.4);
+    }
+  }
+
+  @include tablet {
+    min-height: calc(100vh - $header-height-mobile);
+  }
+
+  @include mobile {
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

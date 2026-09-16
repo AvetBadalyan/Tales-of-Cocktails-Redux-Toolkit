@@ -1,42 +1,48 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import Filters from "../../components/Filters/Filters";
-import CocktailList from "../../components/CocktailList/CocktailList";
-import RecentlyViewed from "../../components/RecentlyViewed/RecentlyViewed";
-import SearchInput from "../../components/Search/SearchInput";
-import { BASE, fetchCocktails } from "../../redux/features/cocktailSlice";
-import "./Cocktails.css";
+import CocktailList from '@components/CocktailList/CocktailList'
+import Filters from '@components/Filters/Filters'
+import RecentlyViewed from '@components/RecentlyViewed/RecentlyViewed'
+import SearchInput from '@components/Search/SearchInput'
+import { fetchCocktails, selectCocktails } from '@redux/features/cocktailSlice'
+import { fetchRandomCocktail } from '@services/cocktailApi'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import './Cocktails.scss'
 
 export default function Cocktails() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const hasData = useSelector((state) => state.app.cocktails.length > 0);
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
+	const cocktails = useSelector(selectCocktails)
 
-  useEffect(() => {
-    if (!hasData) {
-      dispatch(fetchCocktails());
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+	useEffect(() => {
+		if (cocktails.length === 0) {
+			dispatch(fetchCocktails())
+		}
+	}, [cocktails.length, dispatch])
 
-  const handleSurprise = () => {
-    fetch(`${BASE}/random.php`)
-      .then((r) => r.json())
-      .then((data) => navigate(`/cocktail/${data.drinks[0].idDrink}`));
-  };
+	const handleSurprise = async () => {
+		try {
+			const data = await fetchRandomCocktail()
+			navigate(`/cocktail/${data.drinks[0].idDrink}`)
+		} catch (err) {
+			console.error('Failed to get random cocktail:', err)
+		}
+	}
 
-  return (
-    <div className="Cocktails-page">
-      <div className="cocktails-top-bar">
-        <SearchInput />
-        <button className="btn-surprise" onClick={handleSurprise}>
-          🊲 Surprise Me
-        </button>
-      </div>
-      <Filters />
-      <RecentlyViewed />
-      <CocktailList />
-    </div>
-  );
+	return (
+		<div className="cocktails-page">
+			<div className="cocktails-page__top-bar">
+				<SearchInput />
+				<button
+					className="cocktails-page__surprise-btn"
+					onClick={handleSurprise}
+				>
+					🎲 Surprise Me
+				</button>
+			</div>
+			<Filters />
+			<RecentlyViewed />
+			<CocktailList />
+		</div>
+	)
 }

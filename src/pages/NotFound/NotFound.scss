@@ -1,0 +1,73 @@
+.not-found {
+  @include flex-center;
+  min-height: calc(100vh - $header-height);
+  padding: $spacing-xl;
+
+  &__content {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-lg;
+    text-align: center;
+    max-width: 50rem;
+    padding: $spacing-3xl;
+    background: $gradient-card;
+    border-radius: $radius-xl;
+    border: 1px solid $color-white-09;
+    animation: fadeIn 0.5s ease;
+  }
+
+  &__icon {
+    font-size: 8rem;
+    animation: pulse 2s infinite;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: 8rem;
+    font-style: italic;
+    @include text-gradient;
+    line-height: 1;
+  }
+
+  &__subtitle {
+    font-family: $font-display;
+    font-size: $font-size-xl;
+    font-style: italic;
+    color: $color-white-90;
+  }
+
+  &__text {
+    font-size: $font-size-md;
+    color: $color-white-50;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-lg;
+    margin-top: $spacing-md;
+
+    button {
+      padding: $spacing-md $spacing-xl;
+      font-size: $font-size-base;
+    }
+  }
+
+  @include tablet {
+    min-height: calc(100vh - $header-height-mobile);
+  }
+
+  @include mobile {
+    &__title {
+      font-size: 6rem;
+    }
+
+    &__actions {
+      flex-direction: column;
+      width: 100%;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,111 +1,146 @@
-import React, { useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { fetchSingleCocktail } from "../../redux/features/cocktailSlice";
-import { addFavorite, removeFavorite } from "../../redux/features/favoritesSlice";
-import "./SingleCocktail.css";
-
-const addToRecentlyViewed = (id, name, image) => {
-  try {
-    const recent = JSON.parse(localStorage.getItem("toc_recently_viewed") || "[]");
-    const filtered = recent.filter((r) => r.id !== id);
-    const updated = [{ id, name, image }, ...filtered].slice(0, 5);
-    localStorage.setItem("toc_recently_viewed", JSON.stringify(updated));
-  } catch {}
-};
+import { SingleCocktailSkeleton } from '@components/Skeleton/Skeleton'
+import { useFavorites, useRecentlyViewed } from '@hooks'
+import {
+	fetchSingleCocktail,
+	selectCurrentCocktail,
+	selectLoading
+} from '@redux/features/cocktailSlice'
+import { getThumbUrl, normalizeCocktail } from '@services/cocktailApi'
+import { useEffect, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import './SingleCocktail.scss'
 
 export default function SingleCocktail() {
-  const { cocktail, loading } = useSelector((state) => state.app);
-  const { favorites } = useSelector((state) => state.favorites);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { id } = useParams();
+	const { id } = useParams()
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
+	const cocktail = useSelector(selectCurrentCocktail)
+	const loading = useSelector(selectLoading)
+	const { isFavorite, toggleFavorite } = useFavorites()
+	const { addToRecentlyViewed } = useRecentlyViewed()
 
-  useEffect(() => {
-    dispatch(fetchSingleCocktail({ id }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+	useEffect(() => {
+		dispatch(fetchSingleCocktail({ id }))
+	}, [id, dispatch])
 
-  const modifiedCocktail = useMemo(() => {
-    if (!cocktail.length) return null;
-    const {
-      strDrink: name,
-      strDrinkThumb: image,
-      strAlcoholic: info,
-      strGlass: glass,
-      strCategory: category,
-      strInstructions: instructions,
-      strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5,
-      strIngredient6, strIngredient7, strIngredient8, strIngredient9, strIngredient10,
-      strIngredient11, strIngredient12, strIngredient13, strIngredient14, strIngredient15,
-    } = cocktail[0];
-    const ingredients = [
-      strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5,
-      strIngredient6, strIngredient7, strIngredient8, strIngredient9, strIngredient10,
-      strIngredient11, strIngredient12, strIngredient13, strIngredient14, strIngredient15,
-    ].filter(Boolean);
-    return { name, image, info, category, glass, instructions, ingredients };
-  }, [cocktail]);
+	const cocktailData = useMemo(() => normalizeCocktail(cocktail), [cocktail])
 
-  useEffect(() => {
-    if (modifiedCocktail) {
-      addToRecentlyViewed(id, modifiedCocktail.name, modifiedCocktail.image);
-    }
-  }, [id, modifiedCocktail]);
+	// Track recently viewed
+	useEffect(() => {
+		if (cocktailData) {
+			addToRecentlyViewed({
+				id: cocktailData.id,
+				name: cocktailData.name,
+				image: cocktailData.image
+			})
+		}
+	}, [cocktailData, addToRecentlyViewed])
 
-  const isFavorited = favorites.some((f) => f.id === id);
+	const favorited = isFavorite(id)
 
-  const handleFavorite = () => {
-    if (isFavorited) {
-      dispatch(removeFavorite(id));
-    } else if (modifiedCocktail) {
-      dispatch(addFavorite({ id, name: modifiedCocktail.name, image: modifiedCocktail.image }));
-    }
-  };
+	const handleFavorite = () => {
+		if (cocktailData) {
+			toggleFavorite({
+				id: cocktailData.id,
+				name: cocktailData.name,
+				image: cocktailData.image
+			})
+		}
+	}
 
-  return (
-    <div className="single-cocktail-page">
-      <button className="btn-back-page" onClick={() => navigate(-1)}>
-        ← Back
-      </button>
+	return (
+		<div className="single-cocktail">
+			<button className="single-cocktail__back" onClick={() => navigate(-1)}>
+				← Back
+			</button>
 
-      {loading && <div className="loading-text">Loading...</div>}
+			{loading && <SingleCocktailSkeleton />}
 
-      {!loading && !modifiedCocktail && <h2>No cocktail found</h2>}
+			{!loading && !cocktailData && (
+				<div className="single-cocktail__not-found">
+					<h2>Cocktail not found</h2>
+					<Link to="/cocktails">
+						<button>Browse All Cocktails</button>
+					</Link>
+				</div>
+			)}
 
-      {!loading && modifiedCocktail && (
-        <div className="drink">
-          <div className="single-cocktail-page-image-container">
-            <img src={modifiedCocktail.image} alt={modifiedCocktail.name} />
-          </div>
-          <div className="drink-info">
-            <h2 className="drink-name">
-              {modifiedCocktail.name}
-            </h2>
-            <button
-              className={`btn-favorite${isFavorited ? " favorited" : ""}`}
-              onClick={handleFavorite}
-            >
-              {isFavorited ? "♥ Saved" : "♡ Save to Favorites"}
-            </button>
-            <p>Category: <span className="drink-data">{modifiedCocktail.category}</span></p>
-            <p>Info: <span className="drink-data">{modifiedCocktail.info}</span></p>
-            <p>Glass: <span className="drink-data">{modifiedCocktail.glass}</span></p>
-            <p>Instructions: <span className="drink-data">{modifiedCocktail.instructions}</span></p>
-            <p>
-              Ingredients:{" "}
-              {modifiedCocktail.ingredients.map((ing, i) => (
-                <React.Fragment key={ing}>
-                  <Link to={`/ingredient/${encodeURIComponent(ing)}`} className="ingredient-link">
-                    {ing}
-                  </Link>
-                  {i < modifiedCocktail.ingredients.length - 1 && ", "}
-                </React.Fragment>
-              ))}
-            </p>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+			{!loading && cocktailData && (
+				<div className="single-cocktail__content">
+					<div className="single-cocktail__image-container">
+						<img
+							src={getThumbUrl(cocktailData.image, 'medium')}
+							alt={cocktailData.name}
+						/>
+					</div>
+
+					<div className="single-cocktail__info">
+						<h1 className="single-cocktail__name">{cocktailData.name}</h1>
+
+						<button
+							className={`single-cocktail__favorite ${favorited ? 'single-cocktail__favorite--active' : ''}`}
+							onClick={handleFavorite}
+						>
+							{favorited ? '♥ Saved' : '♡ Save to Favorites'}
+						</button>
+
+						<div className="single-cocktail__details">
+							<p>
+								<span className="single-cocktail__label">Category:</span>
+								<span className="single-cocktail__value">
+									{cocktailData.category}
+								</span>
+							</p>
+							<p>
+								<span className="single-cocktail__label">Info:</span>
+								<span className="single-cocktail__value">
+									{cocktailData.info}
+								</span>
+							</p>
+							<p>
+								<span className="single-cocktail__label">Glass:</span>
+								<span className="single-cocktail__value">
+									{cocktailData.glass}
+								</span>
+							</p>
+						</div>
+
+						<div className="single-cocktail__instructions">
+							<p>
+								<span className="single-cocktail__label">Instructions:</span>
+							</p>
+							<p className="single-cocktail__value">
+								{cocktailData.instructions}
+							</p>
+						</div>
+
+						<div className="single-cocktail__ingredients">
+							<p>
+								<span className="single-cocktail__label">Ingredients:</span>
+							</p>
+							<ul className="single-cocktail__ingredients-list">
+								{cocktailData.ingredients.map((ing, i) => (
+									<li key={i}>
+										<Link
+											to={`/ingredient/${encodeURIComponent(ing.name)}`}
+											className="single-cocktail__ingredient-link"
+										>
+											{ing.name}
+										</Link>
+										{ing.measure && (
+											<span className="single-cocktail__measure">
+												{' '}
+												- {ing.measure}
+											</span>
+										)}
+									</li>
+								))}
+							</ul>
+						</div>
+					</div>
+				</div>
+			)}
+		</div>
+	)
 }

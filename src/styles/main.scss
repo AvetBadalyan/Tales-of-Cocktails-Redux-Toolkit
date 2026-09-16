@@ -1,0 +1,178 @@
+// ===========================================
+// TALES OF COCKTAILS - MAIN STYLES
+// ===========================================
+
+// Variables are auto-imported via vite.config.js
+
+// -----------------------------
+// Reset & Base Styles
+// -----------------------------
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px
+  scroll-behavior: smooth;
+  background-color: $color-black;
+}
+
+body {
+  font-size: $font-size-md;
+  font-family: $font-primary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $color-white;
+  background-color: $color-black;
+  min-height: 100vh;
+}
+
+code {
+  font-family: $font-mono;
+}
+
+// -----------------------------
+// Typography
+// -----------------------------
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-display;
+  font-weight: $font-weight-bold;
+}
+
+// -----------------------------
+// Links
+// -----------------------------
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color $transition-base;
+
+  &:hover {
+    color: $color-red-accent;
+  }
+}
+
+// -----------------------------
+// Buttons
+// -----------------------------
+button {
+  cursor: pointer;
+  transition: all $transition-base;
+  background: $color-black;
+  border: 2px solid $color-white;
+  color: $color-white;
+  box-shadow: $shadow-md;
+  border-radius: $radius-md;
+  padding: $spacing-lg;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  font-family: inherit;
+
+  &:hover {
+    background-color: $color-burgundy-light;
+    color: $color-white;
+    box-shadow: $shadow-lg;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// -----------------------------
+// Images
+// -----------------------------
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// -----------------------------
+// Scrollbar
+// -----------------------------
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-burgundy;
+  border-radius: $radius-sm;
+
+  &:hover {
+    background: $color-burgundy-light;
+  }
+}
+
+// Firefox
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $color-burgundy $color-dark;
+}
+
+// -----------------------------
+// Selection
+// -----------------------------
+::selection {
+  background: $color-burgundy;
+  color: $color-white;
+}
+
+// -----------------------------
+// App Container
+// -----------------------------
+.app {
+  min-height: 100vh;
+  background-color: $color-black;
+}
+
+// -----------------------------
+// Loading States
+// -----------------------------
+.loading-text {
+  text-align: center;
+  font-size: $font-size-md;
+  margin: $spacing-3xl auto;
+  color: $color-white-50;
+  letter-spacing: $letter-spacing-wider;
+  text-transform: uppercase;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+// -----------------------------
+// Screen Reader Only
+// -----------------------------
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

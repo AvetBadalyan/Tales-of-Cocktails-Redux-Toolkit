@@ -1,0 +1,89 @@
+.recently-viewed {
+  width: $container-width;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: $spacing-lg 0;
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    color: $color-white-50;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wide;
+    margin-bottom: $spacing-md;
+  }
+
+  &__list {
+    display: flex;
+    gap: $spacing-md;
+    overflow-x: auto;
+    padding-bottom: $spacing-sm;
+
+    // Hide scrollbar but keep functionality
+    scrollbar-width: thin;
+    scrollbar-color: $color-burgundy transparent;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $color-burgundy;
+      border-radius: $radius-sm;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xs;
+    flex-shrink: 0;
+    padding: $spacing-sm;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid $color-white-09;
+    border-radius: $radius-lg;
+    transition: all $transition-base;
+
+    &:hover {
+      background: rgba(74, 2, 3, 0.2);
+      border-color: $color-burgundy;
+      transform: translateY(-2px);
+      color: $color-white;
+    }
+
+    img {
+      width: 6rem;
+      height: 6rem;
+      object-fit: cover;
+      border-radius: $radius-md;
+    }
+
+    span {
+      font-size: $font-size-xs;
+      color: $color-white-70;
+      max-width: 8rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+    }
+  }
+
+  @include mobile {
+    &__item {
+      img {
+        width: 5rem;
+        height: 5rem;
+      }
+
+      span {
+        max-width: 6rem;
+      }
+    }
+  }
+}

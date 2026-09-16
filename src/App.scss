@@ -1,0 +1,43 @@
+.app {
+  min-height: 100vh;
+  background-color: $color-black;
+}
+
+.main-content {
+  min-height: calc(100vh - $header-height);
+
+  @include tablet {
+    min-height: calc(100vh - $header-height-mobile);
+  }
+}
+
+// Page Loader
+.page-loader {
+  @include flex-center;
+  flex-direction: column;
+  gap: $spacing-lg;
+  min-height: 60vh;
+  color: $color-white-50;
+
+  &__spinner {
+    width: 4rem;
+    height: 4rem;
+    border: 3px solid $color-white-12;
+    border-top-color: $color-burgundy;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  p {
+    font-size: $font-size-sm;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wider;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

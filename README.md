@@ -1,85 +1,206 @@
-# Tales of Cocktails
+# 🍸 Tales of Cocktails
 
-A cocktail encyclopedia built with React 18, Redux Toolkit, and React Router v6. Browse 160+ recipes, filter by category or letter, search by name, save favorites, and discover something new with Surprise Me or the Cocktail of the Day.
+A modern cocktail encyclopedia built with **React 19**, **Redux Toolkit**, and
+**Vite**. Browse 160+ cocktail recipes, filter by category or letter, search by
+name, save your favorites, and discover something new with Surprise Me or the
+daily Cocktail of the Day.
 
-**Live:** [https://tales-of-cocktails.web.app/](https://tales-of-cocktails.web.app/)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen?style=for-the-badge)](https://tales-of-cocktails.web.app/)
+[![React](https://img.shields.io/badge/React-19-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
+[![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-2.x-764abc?style=for-the-badge&logo=redux)](https://redux-toolkit.js.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.x-646cff?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+[![Firebase](https://img.shields.io/badge/Firebase-Hosting-ffca28?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
 
-## Screenshots
+## ✨ Features
 
-![Home – Cocktail of the Day](./screenshots/screenshot1.png)
-![Cocktails – Browse & Filter](./screenshots/screenshot2.png)
-![Cocktails – Category Filter](./screenshots/screenshot3.png)
-![Single Cocktail Detail](./screenshots/screenshot4.png)
-![Favorites](./screenshots/screenshot5.png)
-![About](./screenshots/screenshot6.png)
+- **🔍 Smart Search** — Real-time search with debounced input
+- **🏷️ Category Filters** — Filter by drink category (Ordinary Drink, Cocktail,
+  Shot, etc.)
+- **🔤 A-Z Navigation** — Browse cocktails alphabetically or by numbers (0-9)
+- **❤️ Favorites** — Save cocktails to your favorites with localStorage
+  persistence
+- **👀 Recently Viewed** — Quick access to your last 5 viewed cocktails
+- **🎲 Surprise Me** — Get a random cocktail recommendation
+- **📅 Cocktail of the Day** — Fresh daily recommendation on the home page
+- **📖 Ingredient Pages** — Detailed ingredient info with related cocktails
+- **📱 Fully Responsive** — Works great on mobile, tablet, and desktop
+- **🍔 Mobile Navigation** — Hamburger menu for smaller screens
+- **⚡ Lazy Loading** — Route-based code splitting for faster initial load
+- **💀 Loading Skeletons** — Smooth loading states instead of spinners
 
-# Getting Started with Create React App
+## 📸 Screenshots
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+| Home                                   | Cocktails                                   | Detail                                   |
+| -------------------------------------- | ------------------------------------------- | ---------------------------------------- |
+| ![Home](./screenshots/screenshot1.png) | ![Cocktails](./screenshots/screenshot2.png) | ![Detail](./screenshots/screenshot4.png) |
 
-## Available Scripts
+| Filters                                   | Favorites                                   | About                                   |
+| ----------------------------------------- | ------------------------------------------- | --------------------------------------- |
+| ![Filters](./screenshots/screenshot3.png) | ![Favorites](./screenshots/screenshot5.png) | ![About](./screenshots/screenshot6.png) |
 
-In the project directory, you can run:
+## 🛠️ Tech Stack
 
-### `npm start`
+| Category             | Technologies                                           |
+| -------------------- | ------------------------------------------------------ |
+| **Frontend**         | React 19, React Router v6                              |
+| **State Management** | Redux Toolkit, React-Redux                             |
+| **Styling**          | SCSS with variables & mixins                           |
+| **Build Tool**       | Vite 5                                                 |
+| **API**              | [TheCocktailDB](https://www.thecocktaildb.com/api.php) |
+| **Hosting**          | Firebase Hosting                                       |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🏗️ Project Structure
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+src/
+├── components/          # Reusable UI components
+│   ├── CocktailList/    # Cocktail grid with cards
+│   ├── ErrorBoundary/   # Error boundary wrapper
+│   ├── Filters/         # Category & A-Z filters
+│   ├── Header/          # Navigation with hamburger menu
+│   ├── Pagination/      # Page navigation
+│   ├── RecentlyViewed/  # Recently viewed strip
+│   ├── Search/          # Search input with debounce
+│   └── Skeleton/        # Loading skeleton components
+├── hooks/               # Custom React hooks
+│   ├── useDebounce.js
+│   ├── useFavorites.js
+│   ├── useLocalStorage.js
+│   └── useRecentlyViewed.js
+├── pages/               # Route pages
+│   ├── About/
+│   ├── Cocktails/
+│   ├── Favorites/
+│   ├── Home/
+│   ├── Ingredient/
+│   ├── NotFound/
+│   └── SingleCocktail/
+├── redux/               # Redux store & slices
+│   ├── features/
+│   │   ├── cocktailSlice.js
+│   │   └── favoritesSlice.js
+│   └── store.js
+├── services/            # API layer
+│   └── cocktailApi.js
+├── styles/              # Global SCSS
+│   ├── _variables.scss
+│   └── main.scss
+├── App.jsx
+└── main.jsx
+```
 
-### `npm test`
+## 🚀 Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+- Node.js 18+
+- npm or yarn
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/tales-of-cocktails.git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Navigate to project directory
+cd tales-of-cocktails
 
-### `npm run eject`
+# Install dependencies
+npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Start development server
+npm run dev
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The app will open at [http://localhost:3000](http://localhost:3000)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Build for Production
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+# Create optimized build
+npm run build
 
-## Learn More
+# Preview production build locally
+npm run preview
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Code Quality
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+# Lint the codebase (fails on any warning)
+npm run lint
 
-### Code Splitting
+# Format all source files with Prettier
+npm run format
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Verify formatting without writing changes
+npm run format:check
+```
 
-### Analyzing the Bundle Size
+### Deploy to Firebase
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+# Install Firebase CLI if needed
+npm install -g firebase-tools
 
-### Making a Progressive Web App
+# Login once
+firebase login
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Build and deploy in one step
+npm run deploy
+```
 
-### Advanced Configuration
+## 📝 API Reference
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+This project uses the free
+[TheCocktailDB API](https://www.thecocktaildb.com/api.php). Key endpoints:
 
-### Deployment
+| Endpoint                     | Description              |
+| ---------------------------- | ------------------------ |
+| `/search.php?s={name}`       | Search by cocktail name  |
+| `/lookup.php?i={id}`         | Get cocktail by ID       |
+| `/filter.php?c={category}`   | Filter by category       |
+| `/filter.php?a={type}`       | Filter by alcoholic type |
+| `/filter.php?i={ingredient}` | Filter by ingredient     |
+| `/search.php?f={letter}`     | Search by first letter   |
+| `/random.php`                | Get random cocktail      |
+| `/list.php?c=list`           | List all categories      |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🎯 Key Implementation Details
 
-### `npm run build` fails to minify
+### Custom Hooks
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **useDebounce** — Debounces search input to prevent excessive API calls
+- **useFavorites** — Manages favorites with Redux integration
+- **useLocalStorage** — Syncs state with localStorage
+- **useRecentlyViewed** — Tracks last 5 viewed cocktails
+
+### State Management
+
+Redux Toolkit handles:
+
+- Cocktail list with pagination
+- Single cocktail details
+- Categories
+- Filters (category, letter, digits)
+- Ingredient data
+- Loading/error states
+
+### Performance Optimizations
+
+- Route-based code splitting with `React.lazy()`
+- Memoized selectors
+- Debounced search
+- Lazy loaded images
+- Chunked vendor bundles (Vite)
+
+## 📄 License
+
+MIT License — feel free to use this project for learning or as a portfolio
+piece.
+
+## 🙏 Credits
+
+- Cocktail data: [TheCocktailDB](https://www.thecocktaildb.com/)
+- Icons: Native emojis
+- Background image: [Source](https://www.thespruceeats.com/)

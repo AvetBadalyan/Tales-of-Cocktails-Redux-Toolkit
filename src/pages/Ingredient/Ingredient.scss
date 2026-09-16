@@ -1,0 +1,167 @@
+.ingredient {
+  width: $container-width;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: $spacing-xl 0;
+  min-height: calc(100vh - $header-height);
+
+  &__back {
+    padding: $spacing-sm $spacing-lg;
+    font-size: $font-size-base;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__loading,
+  &__not-found {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-xl;
+    padding: $spacing-3xl;
+    text-align: center;
+
+    h2 {
+      font-family: $font-display;
+      font-size: $font-size-xl;
+      color: $color-white-70;
+    }
+  }
+
+  &__hero {
+    display: flex;
+    gap: $spacing-3xl;
+    margin-bottom: $spacing-3xl;
+    animation: fadeIn 0.4s ease;
+  }
+
+  &__image {
+    flex-shrink: 0;
+
+    img {
+      width: 20rem;
+      height: 20rem;
+      object-fit: contain;
+      border-radius: $radius-xl;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid $color-white-09;
+      padding: $spacing-lg;
+    }
+  }
+
+  &__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__name {
+    font-family: $font-display;
+    font-size: $font-size-2xl;
+    font-style: italic;
+    color: $color-white;
+  }
+
+  &__meta {
+    font-size: $font-size-md;
+  }
+
+  &__label {
+    font-weight: $font-weight-bold;
+    color: $color-white-70;
+    margin-right: $spacing-sm;
+  }
+
+  &__value {
+    color: $color-white-90;
+  }
+
+  &__description {
+    color: $color-white-70;
+    line-height: 1.7;
+    max-height: 20rem;
+    overflow-y: auto;
+    padding-right: $spacing-sm;
+  }
+
+  &__cocktails {
+    animation: fadeIn 0.5s ease 0.2s both;
+  }
+
+  &__cocktails-title {
+    font-family: $font-display;
+    font-size: $font-size-xl;
+    font-style: italic;
+    margin-bottom: $spacing-xl;
+    @include text-gradient;
+  }
+
+  &__cocktails-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: $spacing-lg;
+  }
+
+  &__cocktail-card {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-sm;
+    padding: $spacing-md;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid $color-white-09;
+    border-radius: $radius-lg;
+    transition: all $transition-base;
+    animation: fadeInUp 0.4s ease both;
+
+    &:hover {
+      background: rgba(74, 2, 3, 0.2);
+      border-color: $color-burgundy;
+      transform: translateY(-4px);
+      color: $color-white;
+    }
+
+    img {
+      width: 10rem;
+      height: 10rem;
+      object-fit: cover;
+      border-radius: $radius-md;
+    }
+
+    span {
+      font-size: $font-size-sm;
+      color: $color-white-80;
+      text-align: center;
+      line-height: 1.3;
+    }
+  }
+
+  @include tablet {
+    min-height: calc(100vh - $header-height-mobile);
+
+    &__hero {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    &__info {
+      align-items: center;
+    }
+
+    &__name {
+      font-size: $font-size-xl;
+    }
+  }
+
+  @include mobile {
+    &__cocktails-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &__cocktail-card {
+      img {
+        width: 8rem;
+        height: 8rem;
+      }
+    }
+  }
+}

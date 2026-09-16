@@ -1,0 +1,95 @@
+.home {
+  min-height: calc(100vh - $header-height);
+
+  &__hero {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-xl;
+    min-height: calc(100vh - $header-height);
+    padding: $spacing-xl;
+    background: url('@assets/Martini-Negroni-Manhattan-Holiday-Drink-Recipe.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: $color-white;
+  }
+
+  &__cotd {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-md;
+    min-width: 24rem;
+    padding: $spacing-xl;
+    background: rgba(0, 0, 0, 0.65);
+    border: 1px solid $color-white-12;
+    border-radius: $radius-xl;
+    @include backdrop-blur(6px);
+  }
+
+  &__cotd-label {
+    font-size: $font-size-sm;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-widest;
+    color: $color-white-50;
+  }
+
+  &__cotd-loading {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  &__cotd-card {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-sm;
+    text-decoration: none;
+    color: $color-white;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.85;
+      color: $color-white;
+    }
+  }
+
+  &__cotd-image {
+    width: 18rem;
+    height: 18rem;
+    object-fit: cover;
+    border-radius: $radius-lg;
+    border: 1px solid $color-white-12;
+  }
+
+  &__cotd-name {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    font-family: $font-display;
+    font-style: italic;
+    text-align: center;
+  }
+
+  &__cta {
+    background: $color-white-70;
+    color: $color-burgundy;
+    border: 2px solid $color-burgundy;
+
+    &:hover {
+      background: $color-burgundy-light;
+      color: $color-white;
+    }
+  }
+
+  @include mobile {
+    &__cta {
+      font-size: $font-size-md;
+      padding: $spacing-md $spacing-lg;
+    }
+  }
+
+  @include tablet {
+    &__hero {
+      min-height: calc(100vh - $header-height-mobile);
+    }
+  }
+}

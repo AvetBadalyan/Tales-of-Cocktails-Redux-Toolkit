@@ -1,0 +1,46 @@
+.error-boundary {
+  @include flex-center;
+  min-height: 80vh;
+  padding: $spacing-xl;
+  background-color: $color-black;
+
+  &__content {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-xl;
+    text-align: center;
+    max-width: 50rem;
+    padding: $spacing-3xl;
+    background: $gradient-card;
+    border-radius: $radius-xl;
+    border: 1px solid $color-white-09;
+  }
+
+  &__icon {
+    font-size: 6rem;
+    animation: pulse 2s infinite;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: $font-size-2xl;
+    font-style: italic;
+    color: $color-white;
+  }
+
+  &__message {
+    font-size: $font-size-md;
+    color: $color-white-70;
+    line-height: 1.6;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-lg;
+
+    button {
+      padding: $spacing-md $spacing-xl;
+      font-size: $font-size-base;
+    }
+  }
+}

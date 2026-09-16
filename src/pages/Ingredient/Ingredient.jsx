@@ -1,67 +1,121 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { fetchIngredient } from "../../redux/features/cocktailSlice";
-import "./Ingredient.css";
+import { Skeleton } from '@components/Skeleton/Skeleton'
+import {
+	fetchIngredient,
+	selectIngredient,
+	selectIngredientCocktails,
+	selectIngredientLoading
+} from '@redux/features/cocktailSlice'
+import { getIngredientImageUrl } from '@services/cocktailApi'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import './Ingredient.scss'
 
 export default function Ingredient() {
-  const { name } = useParams();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { ingredient, ingredientCocktails, ingredientLoading } = useSelector((state) => state.app);
+	const { name } = useParams()
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
+	const ingredient = useSelector(selectIngredient)
+	const cocktails = useSelector(selectIngredientCocktails)
+	const loading = useSelector(selectIngredientLoading)
 
-  useEffect(() => {
-    dispatch(fetchIngredient({ name }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name]);
+	useEffect(() => {
+		dispatch(fetchIngredient({ name }))
+	}, [name, dispatch])
 
-  const imageUrl = `https://www.thecocktaildb.com/images/ingredients/${encodeURIComponent(name)}-medium.png`;
+	const imageUrl = getIngredientImageUrl(name, 'medium')
 
-  return (
-    <div className="ingredient-page">
-      <button className="btn-back-page" onClick={() => navigate(-1)}>← Back</button>
+	return (
+		<div className="ingredient">
+			<button className="ingredient__back" onClick={() => navigate(-1)}>
+				← Back
+			</button>
 
-      {ingredientLoading && <div className="ingredient-loading">Loading...</div>}
+			{loading && (
+				<div className="ingredient__loading">
+					<div className="ingredient__hero">
+						<Skeleton variant="rect" width="20rem" height="20rem" />
+						<div className="ingredient__info">
+							<Skeleton variant="text" width="60%" height="3.2rem" />
+							<Skeleton variant="text" width="40%" height="1.6rem" />
+							<Skeleton variant="text" width="100%" height="10rem" />
+						</div>
+					</div>
+				</div>
+			)}
 
-      {!ingredientLoading && !ingredient && <h2>Ingredient not found</h2>}
+			{!loading && !ingredient && (
+				<div className="ingredient__not-found">
+					<h2>Ingredient not found</h2>
+					<Link to="/cocktails">
+						<button>Browse Cocktails</button>
+					</Link>
+				</div>
+			)}
 
-      {!ingredientLoading && ingredient && (
-        <>
-          <div className="ingredient-hero">
-            <div className="ingredient-image-container">
-              <img src={imageUrl} alt={ingredient.strIngredient} />
-            </div>
-            <div className="ingredient-info">
-              <h1 className="ingredient-name">{ingredient.strIngredient}</h1>
-              {ingredient.strType && (
-                <p>Type: <span className="ingredient-data">{ingredient.strType}</span></p>
-              )}
-              {ingredient.strAlcohol === "Yes" && ingredient.strABV && (
-                <p>ABV: <span className="ingredient-data">{ingredient.strABV}%</span></p>
-              )}
-              {ingredient.strDescription && (
-                <p className="ingredient-description">{ingredient.strDescription}</p>
-              )}
-            </div>
-          </div>
+			{!loading && ingredient && (
+				<>
+					<div className="ingredient__hero">
+						<div className="ingredient__image">
+							<img src={imageUrl} alt={ingredient.strIngredient} />
+						</div>
 
-          {ingredientCocktails.length > 0 && (
-            <div className="ingredient-cocktails">
-              <h2 className="ingredient-cocktails-title">
-                {ingredientCocktails.length} cocktails with {ingredient.strIngredient}
-              </h2>
-              <div className="ingredient-cocktails-grid">
-                {ingredientCocktails.map((c) => (
-                  <Link key={c.idDrink} to={`/cocktail/${c.idDrink}`} className="ingredient-cocktail-card">
-                    <img src={`${c.strDrinkThumb}/small`} alt={c.strDrink} />
-                    <span>{c.strDrink}</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
-        </>
-      )}
-    </div>
-  );
+						<div className="ingredient__info">
+							<h1 className="ingredient__name">{ingredient.strIngredient}</h1>
+
+							{ingredient.strType && (
+								<p className="ingredient__meta">
+									<span className="ingredient__label">Type:</span>
+									<span className="ingredient__value">
+										{ingredient.strType}
+									</span>
+								</p>
+							)}
+
+							{ingredient.strAlcohol === 'Yes' && ingredient.strABV && (
+								<p className="ingredient__meta">
+									<span className="ingredient__label">ABV:</span>
+									<span className="ingredient__value">
+										{ingredient.strABV}%
+									</span>
+								</p>
+							)}
+
+							{ingredient.strDescription && (
+								<p className="ingredient__description">
+									{ingredient.strDescription}
+								</p>
+							)}
+						</div>
+					</div>
+
+					{cocktails.length > 0 && (
+						<div className="ingredient__cocktails">
+							<h2 className="ingredient__cocktails-title">
+								{cocktails.length} cocktails with {ingredient.strIngredient}
+							</h2>
+
+							<div className="ingredient__cocktails-grid">
+								{cocktails.map((c, index) => (
+									<Link
+										key={c.idDrink}
+										to={`/cocktail/${c.idDrink}`}
+										className="ingredient__cocktail-card"
+										style={{ animationDelay: `${index * 0.03}s` }}
+									>
+										<img
+											src={`${c.strDrinkThumb}/small`}
+											alt={c.strDrink}
+											loading="lazy"
+										/>
+										<span>{c.strDrink}</span>
+									</Link>
+								))}
+							</div>
+						</div>
+					)}
+				</>
+			)}
+		</div>
+	)
 }

@@ -1,10 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
-import CocktailReducer from "./features/cocktailSlice";
-import FavoritesReducer from "./features/favoritesSlice";
+import { configureStore } from '@reduxjs/toolkit'
+import cocktailReducer from './features/cocktailSlice'
+import favoritesReducer from './features/favoritesSlice'
 
-export default configureStore({
-  reducer: {
-    app: CocktailReducer,
-    favorites: FavoritesReducer,
-  },
-});
+const store = configureStore({
+	reducer: {
+		cocktails: cocktailReducer,
+		favorites: favoritesReducer
+	},
+	devTools: import.meta.env.DEV
+})
+
+export default store

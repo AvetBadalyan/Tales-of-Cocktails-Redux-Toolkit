@@ -1,0 +1,57 @@
+.cocktails-page {
+  padding: $spacing-xl 0;
+  min-height: calc(100vh - $header-height);
+
+  &__top-bar {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+    width: $container-width;
+    max-width: $container-max-width;
+    margin: 0 auto $spacing-lg;
+    flex-wrap: wrap;
+  }
+
+  &__surprise-btn {
+    padding: $spacing-md $spacing-xl;
+    font-size: $font-size-base;
+    white-space: nowrap;
+    flex-shrink: 0;
+
+    &:hover {
+      animation: shake 0.5s ease-in-out;
+    }
+  }
+
+  @include mobile {
+    &__top-bar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    &__surprise-btn {
+      width: 100%;
+      padding: $spacing-md;
+    }
+  }
+
+  @include tablet {
+    min-height: calc(100vh - $header-height-mobile);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px) rotate(-5deg);
+  }
+  50% {
+    transform: translateX(5px) rotate(5deg);
+  }
+  75% {
+    transform: translateX(-5px) rotate(-5deg);
+  }
+}
